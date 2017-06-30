@@ -3779,7 +3779,7 @@ koa-is-json@^1.0.0:
   version "1.0.0"
   resolved "https://registry.npmjs.org/koa-is-json/-/koa-is-json-1.0.0.tgz#273c07edcdcb8df6a2c1ab7d59ee76491451ec14"
 
-koa-send@^3.3.0:
+koa-send@^3.2.0:
   version "3.3.0"
   resolved "https://registry.npmjs.org/koa-send/-/koa-send-3.3.0.tgz#5a4ae245564680c6ecf6079e9275fa5173a861dc"
   dependencies:
@@ -3797,6 +3797,13 @@ koa-send@^4.0.0:
     mz "^2.6.0"
     resolve-path "^1.3.3"
 
+koa-static@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.npmjs.org/koa-static/-/koa-static-3.0.0.tgz#40442233d2c0b35c225e450199c10bf8a539e416"
+  dependencies:
+    debug "*"
+    koa-send "^3.2.0"
+
 koa-views@^6.0.2:
   version "6.0.2"
   resolved "https://registry.npmjs.org/koa-views/-/koa-views-6.0.2.tgz#0c8252589dbbdd63e30896080942b4bf4b0e5214"
@@ -3805,12 +3812,6 @@ koa-views@^6.0.2:
     debug "^2.1.3"
     koa-send "^4.0.0"
     mz "^2.4.0"
-
-koa2-static@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.npmjs.org/koa2-static/-/koa2-static-1.0.1.tgz#42165b41c243f285a9d712b345a210add19d6483"
-  dependencies:
-    koa-send "^3.3.0"
 
 koa@^2.3.0:
   version "2.3.0"
