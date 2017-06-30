@@ -1,6 +1,6 @@
 {
   "name": "dh-c",
-  "version": "1.0.80",
+  "version": "1.0.81",
   "description": "The front-end development engineers jimberton gulp react component",
   "main": "dist/index.js",
   "scripts": {
