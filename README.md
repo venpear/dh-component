@@ -4,4 +4,5 @@
 npm install
 npm run dev
 ```
-#打包
+# 打包
+# 发版
