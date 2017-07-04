@@ -2,7 +2,7 @@
 # 启动方式
 ```bash
 npm install // 或者 yarn install
-npm run dev
+npm run build
 ```
 # 打包
 # 发版
