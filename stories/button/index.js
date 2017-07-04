@@ -7,7 +7,7 @@ const options = {
   inline: true, propTables: false
 }
 
-storiesOf('按钮', module)
+storiesOf('按钮组件', module)
   .addDecorator(withReadme(buttonReadme))
   .addWithInfo(
     '按钮样式',
