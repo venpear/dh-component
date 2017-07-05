@@ -67,5 +67,6 @@
 	"ok-circle": "\\e8a0",
 	"file": "\\e60a",
 	"revoke": "\\e619",
-	"projection": "\\e61e"
+	"projection": "\\e61e",
+	"prompt": "\\e637"
 }
