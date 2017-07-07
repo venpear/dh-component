@@ -38,7 +38,7 @@
 | render | 生成复杂数据的渲染函数，参数分别为当前行的值，当前行数据，行索引 | function(text, record, index) | 无|
 | frozen | 冻结此列 | bool | false|
 | ext | 额外选项, 靠右显示 | element | null|
-| heightLine | 高亮此列 | bool | 无 |
+| heightLine | 需高亮列的类名 | string | 无 |
 
 
 ### rowSelection

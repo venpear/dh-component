@@ -45,6 +45,7 @@ class Table extends Component {
     upIcon: 'sort-up',
     downIcon: 'sort-down',
     fixed: true
+
   };
 
   constructor(props) {
@@ -146,7 +147,7 @@ class Table extends Component {
         {columns.map(d => (
           <th
               key={d.dataIndex}
-              className={classNames({'an-table-col-heightLine': d.heightLine})}
+              className={classNames({[d.heightLine]: d.heightLine})}
           >
             {d.title}
             {d.sorter && (
@@ -183,7 +184,7 @@ class Table extends Component {
             <td
               className={classNames({
                         'an-table-col-frozen': c.frozen
-                      }, {'an-table-col-heightLine': c.heightLine})}
+                      }, {[c.heightLine]: c.heightLine})}
               key={c.dataIndex}
             >
               {c.render ? c.render(d[c.dataIndex], d, i) : (d[c.dataIndex] || '(空白)')}
