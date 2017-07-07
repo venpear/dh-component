@@ -147,7 +147,7 @@ class Table extends Component {
         {columns.map(d => (
           <th
               key={d.dataIndex}
-              className={classNames({[d.heightLine]: d.heightLine})}
+              className={classNames({[d.classname]: d.classname})}
           >
             {d.title}
             {d.sorter && (
@@ -184,7 +184,7 @@ class Table extends Component {
             <td
               className={classNames({
                         'an-table-col-frozen': c.frozen
-                      }, {[c.heightLine]: c.heightLine})}
+                      }, {[c.classname]: c.classname})}
               key={c.dataIndex}
             >
               {c.render ? c.render(d[c.dataIndex], d, i) : (d[c.dataIndex] || '(空白)')}
