@@ -45,6 +45,7 @@ class Table extends Component {
     upIcon: 'sort-up',
     downIcon: 'sort-down',
     fixed: true
+
   };
 
   constructor(props) {
@@ -121,7 +122,7 @@ class Table extends Component {
 
   handleScroll = () => {
     const { scrollLeft, scrollTop, scrollHeight, clientHeight } = this.refs.table;
-    this.refs.thead.style.transform = `translateY(${scrollTop}px)`
+    this.refs.thead.style.transform = `translateY(${scrollTop}px)`;
     if (scrollTop + clientHeight >= scrollHeight - 36) {
       if (!this.preventRequest) {
         if (this.props.onLoad) {
@@ -144,7 +145,10 @@ class Table extends Component {
           </th>
         )}
         {columns.map(d => (
-          <th key={d.dataIndex}>
+          <th
+              key={d.dataIndex}
+              className={classNames({[d.className]: d.className})}
+          >
             {d.title}
             {d.sorter && (
               <span className="dh-sort-icon" onClick={() => this.handleSortChange(d.dataIndex)}>
@@ -180,7 +184,7 @@ class Table extends Component {
             <td
               className={classNames({
                         'an-table-col-frozen': c.frozen
-                      })}
+                      }, {[c.className]: c.className})}
               key={c.dataIndex}
             >
               {c.render ? c.render(d[c.dataIndex], d, i) : (d[c.dataIndex] || '(空白)')}
