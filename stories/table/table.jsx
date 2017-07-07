@@ -32,7 +32,7 @@ class TableDemo extends React.Component {
       {title: '年龄', dataIndex: 'age', sorter: true, ext:<Icon type="list-circle"/> },
       {title: '性别', dataIndex: 'sex', sorter: true, render: (text) => text == 1 ? '男' : '女'},
       {title: '身高', dataIndex: 'height',sorter: true },
-      {title: '体重', dataIndex: 'weight',sorter: true, classname: 'classname'}
+      {title: '体重', dataIndex: 'weight',sorter: true, className: 'className'}
     ];
     return (
       <div style={{height: 500, width: 200}}>
