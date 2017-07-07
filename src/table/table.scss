@@ -98,7 +98,21 @@ $tr-height-large: 60px;
       background: rgba(248, 248, 248, 0.8);
     }
   }
-
+//高亮样式
+  .an-table-col-heightLine {
+    position: relative;
+  }
+  .an-table-col-heightLine:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(35,193,50,0.05);
+    z-index: 0;
+  }
+//end
   &.dh-table-small {
     thead {
       height: $tr-height-small;
