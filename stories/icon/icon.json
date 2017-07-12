@@ -68,5 +68,8 @@
 	"file": "\\e60a",
 	"revoke": "\\e619",
 	"projection": "\\e61e",
-	"prompt": "\\e637"
+	"prompt": "\\e637",
+	"switch-chart": "\\e63a",
+	"config-chart": "\\e639",
+	"delet": "\\e638"
 }
