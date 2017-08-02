@@ -9,8 +9,6 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
 }
-
-
 .dh-icon-list:before { content: "\e600"; }
 
 .dh-icon-refresh:before { content: "\e601"; }
@@ -149,7 +147,7 @@
 
 .dh-icon-plus:before { content: "\e616"; }
 
-.dh-icon-ziyuan:before { content: "\e619"; }
+.dh-icon-revoke:before { content: "\e619"; }
 
 .dh-icon-time-setting:before { content: "\e61b"; }
 
@@ -157,7 +155,7 @@
 
 .dh-icon-link-db:before { content: "\e61d"; }
 
-.dh-icon-ppt:before { content: "\e61e"; }
+.dh-icon-projection:before { content: "\e61e"; }
 
 .dh-icon-ziyuan1:before { content: "\e622"; }
 
@@ -185,22 +183,22 @@
 
 .dh-icon-search-bold:before { content: "\e633"; }
 
-.dh-icon-sort-down:before { content: '\e636';}
+.dh-icon-stretch:before { content: "\e634"; }
 
-.dh-icon-sort-up:before { content: '\e635';}
+.dh-icon-sorte-up:before { content: "\e635"; }
 
-.dh-icon-stretch:before { content: '\e634';}
+.dh-icon-sort-down:before { content: "\e636"; }
 
-.dh-icon-revoke:before { content: '\e619';}
+.dh-icon-prompt:before { content: "\e637"; }
 
-.dh-icon-projection:before { content: '\e61e';}
+.dh-icon-delet:before { content: "\e638"; }
 
-.dh-icon-prompt:before { content: '\e637';}
+.dh-icon-config-chart:before { content: "\e639"; }
 
-.dh-icon-switch-chart:before { content: '\e63a';}
+.dh-icon-switch-chart:before { content: "\e63a"; }
 
-.dh-icon-config-chart:before { content: '\e639';}
+.dh-icon-shaixuan:before { content: "\e63b"; }
 
-.dh-icon-delet:before { content: '\e638';}
+.dh-icon-zoom:before { content: "\e641"; }
 
 

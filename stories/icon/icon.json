@@ -71,5 +71,6 @@
 	"prompt": "\\e637",
 	"switch-chart": "\\e63a",
 	"config-chart": "\\e639",
-	"delet": "\\e638"
+	"delet": "\\e638",
+	"zoom": "\\e641"
 }
