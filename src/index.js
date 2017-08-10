@@ -20,6 +20,7 @@ export Carousel from './carousel';
 export Slider from './slider';
 export Form from './form';
 export ColorPicker from './color_picker';
+export Datasheet from './datasheet';
 /* begin --- import antd component **/
 export Row from 'antd/lib/row';
 export Col from 'antd/lib/col';
