@@ -1,14 +1,12 @@
 .dh-datasheet {
+  overflow: scroll;
+  height: 100%;
   table {
     width: 100%;
     margin: auto;
     border-spacing: 0;
-    border-collapse: collapse;
     table-layout: fixed;
     outline: none;
-    th {
-      border: 1px solid #cecece;
-    }
     tr {
       height: 32px;
       line-height: 32px;
@@ -17,30 +15,42 @@
           background-color: #f8f9fa;
         }
       }
-    }
-    td.selected {
-      border: 2px double #217345;
-    }
-    td {
-      box-sizing: border-box;
-      font-size: 12px;
-      height: 100%;
-      margin: 0;
-      padding: 0;
-      border: 1px solid #cecece;
-      overflow: hidden;
-      text-align: left;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      outline: none;
-      input.editable {
-        width: 100%;
+      th {
+        height: 36px;
+        line-height: 36px;
+        border-right: 1px solid #cecece;
+        border-bottom: 1px solid #cecece;
+        background: #f6f6f6;
+        color: #333333;
+      }
+      td {
+        box-sizing: border-box;
+        font-size: 12px;
         height: 100%;
-        border: none;
+        margin: 0;
+        padding: 0;
+        border-right: 1px solid #cecece;
+        border-bottom: 1px solid #cecece;
+        overflow: hidden;
+        text-align: left;
+        text-overflow: ellipsis;
+        white-space: nowrap;
         outline: none;
-        background: none;
+        input.editable {
+          padding: 0 4px;
+          width: 100%;
+          height: 100%;
+          border: none;
+          outline: none;
+          background: none;
+        }
+        span {
+          padding: 0 4px;
+        }
+      }
+      td.selected {
+        border: 2px solid #217345;
       }
     }
-
   }
 }

@@ -23,10 +23,10 @@ class DatasheetCell extends React.Component {
       // ref.selectionStart = 0;
       // ref.selectionEnd = val.length;
     }
-    if (prevProps.selected && prevProps.editable && this.state.value !== this.props.value) {
-      let { rIndex, index } = this.props;
-      this.props.onChange(rIndex, index, this.state.value)
-    }
+    // if (prevProps.selected && prevProps.editable && this.state.value !== this.props.value) {
+    //   let { rIndex, index } = this.props;
+    //   this.props.onChange(rIndex, index, this.state.value)
+    // }
   }
   handleDoubleClick() {
     let { rIndex, index } = this.props;
@@ -45,7 +45,9 @@ class DatasheetCell extends React.Component {
   }
   handleBlur() {
     let { rIndex, index } = this.props;
-    this.props.onChange(rIndex, index, this.state.value);
+    if (this.props.value + '' !== this.state.value) {
+      this.props.onChange(rIndex, index, this.state.value);
+    }
   }
   render() {
     const props = this.props;

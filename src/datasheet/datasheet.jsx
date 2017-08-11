@@ -1,4 +1,6 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
+
 // import update from 'react/lib/update';
 import PropTypes from 'prop-types';
 
@@ -21,8 +23,9 @@ class Datasheet extends React.Component {
     this.handleKeyDown = this.handleKeyDown.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleDoubleClick = this.handleDoubleClick.bind(this);
+    this.handleScroll = this.handleScroll.bind(this);
   }
-  componentDidMount() {
+  componentWillMount() {
     if (this.props.dataSource && Array.isArray(this.props.dataSource)) {
       let header = this.props.header;
       let dataSource = this.props.dataSource.map(item => {
@@ -33,6 +36,11 @@ class Datasheet extends React.Component {
       })
       this.setState({ dataSource });
     }
+  }
+  componentDidMount() {
+    // const $datasheet = ReactDOM.findDOMNode(this);
+    // const $parentNode = $datasheet.parentNode;
+    // console.log('la', $parentNode.clientWidth)
   }
   handleSeleteCell(rIndex, index) {
     const dataSource = this.state.dataSource;
@@ -50,14 +58,30 @@ class Datasheet extends React.Component {
     this.setState({ dataSource: _dataSource })
   }
   handleChange(rIndex, index, value) {
-    const dataSource = this.state.dataSource;
-    const _dataSource = dataSource.map((item, idx) => {
+    let [rowData, cellData] = [null, null];
+    const dataSource = this.state.dataSource.map((item, idx) => {
       if (idx === rIndex) {
-        return item.map((c, jdx) => ({ ...c, value: jdx === index ?  value : c.value }))
+        rowData = item.map((c, jdx) => {
+          if (jdx === index) {
+            cellData = {...c, value}
+            return cellData;
+          }
+          return c;
+        });
+        return rowData;
       }
-      return item
+      return item;
     });
-    this.setState({ dataSource: _dataSource })
+    this.setState({ dataSource }, () => {
+      let row = rowData.map(item => {
+        let { value, editable, selected, ...others} = item;
+        return { value, ...others }
+      });
+      if (this.props.onChange && typeof this.props.onChange === 'function') {
+        let { value, editable, selected, ...others} = cellData;
+        this.props.onChange({ index, rowIndex: rIndex }, { value, ...others }, row)
+      }
+    })
   }
   handleKeyDown() {
     const dataSource = this.state.dataSource;
@@ -78,19 +102,44 @@ class Datasheet extends React.Component {
     })
     this.setState({ dataSource });
   }
+  handleScroll(e) {
+    const { scrollLeft, scrollTop, scrollHeight, clientHeight } = this.refs.datasheet;
+    if (!this.requestedFrame) {
+      this.requestedFrame = requestAnimationFrame(() => {
+        console.log('aaa')
+        this.refs.thead.style.transform = `translateY(${scrollTop}px)`;
+         this.requestedFrame = null;
+      });
+    }
+  }
   render() {
     const dataSource = this.state.dataSource;
     const header = this.props.header;
+    const { xScroll } = this.props;
+    let tStyle = null;
+    if (xScroll) {
+      tStyle={ width: xScroll };
+    }
     return (
-      <div className="dh-datasheet">
-        <table  tabIndex={0} onKeyDown={this.handleKeyDown}>
-          <thead>
-
-            {
-              header.map((item, idx) => (
-                <th key={`datasheet-th-${idx}`}>{item.title}</th>
-              ))
-            }
+      <div
+        className="dh-datasheet"
+        ref="datasheet"
+        onScroll={this.handleScroll}
+        >
+        <table
+          tabIndex="-1"
+          cellSpacing="0"
+          onKeyDown={this.handleKeyDown}
+          style={tStyle}
+        >
+          <thead ref="thead">
+            <tr>
+              {
+                header.map((item, idx) => (
+                  <th key={`datasheet-th-${idx}`}>{item.title}</th>
+                ))
+              }
+            </tr>
           </thead>
           <tbody>
             {
