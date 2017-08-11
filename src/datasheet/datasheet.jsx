@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 // import update from 'react/lib/update';
 import PropTypes from 'prop-types';
 
-import Row from './row.jsx';
+import Row from './row';
 function buildArray(number = 0) {
   let _array = [];
   for (let index = 0; index < number; index++) {
