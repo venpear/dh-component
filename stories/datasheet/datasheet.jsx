@@ -1,10 +1,9 @@
 import React from 'react'
-import ReactDOM from 'react-dom';
 import { Datasheet } from '../../src'
 
 let grid = function () {
   let arry = [];
-  for (let i = 0; i < 100; i++) {
+  for (let i = 0; i < 50; i++) {
     let row = [];
     for(let i = 0; i < 15; i++) {
       row.push({value: `${Math.floor(Math.random()*100)}`})
@@ -37,19 +36,16 @@ class DataSheetDemo extends React.Component {
             grid: grid()
         }
     }
-    handleOnLoad = (page,e) => {
+    handleOnLoad = (num) => {
         let load = [];
-        for (let i = 0; i < 100; i++) {
+        for (let i = 0; i < 10; i++) {
             let row = [];
-            for(let i = 0; i < 10; i++) {
+            for(let i = 0; i < 12; i++) {
                 row.push({value: `滚动${Math.floor(Math.random()*100)}`})
             }
             load.push(row)
         }
-        console.log(page,'page')
-        this.setState({grid: load}, () => {
-          ReactDOM.findDOMNode(e).scrollTop = 0;
-        })
+        this.setState({grid: [...this.state.grid, ...load]})
     }
     render() {
         return (

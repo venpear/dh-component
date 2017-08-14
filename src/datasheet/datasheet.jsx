@@ -14,25 +14,18 @@ function buildArray(number = 0) {
 }
 
 const ROW_HEIGHT = 33; //默认行高
-const SCROLL_PERCENT = 0.8; //滚动预加载百分比
 class Datasheet extends React.Component {
   static propTypes = {
     header: PropTypes.array,
     dataSource: PropTypes.array,
     onChange: PropTypes.func,
-    onLoad: PropTypes.func,
-    count: PropTypes.number, //一次加载的数据条数 至少满足：count <= dataSource.length
-    page: PropTypes.number
-  }
-  static  defaultProps = {
-    count: 20
+    onLoad: PropTypes.func
   }
   constructor(props) {
     super(props);
     this.state = {
       dataSource: []
     }
-    this.page = 1;
     this.handleSeleteCell = this.handleSeleteCell.bind(this);
     this.handleKeyDown = this.handleKeyDown.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -50,8 +43,9 @@ class Datasheet extends React.Component {
     // console.log('la', $parentNode.clientWidth)
   }
   componentWillReceiveProps(nextProps) {
-    // if(nextProps.dataSource.length !== nextProps)
+    if (JSON.stringify(nextProps.dataSource) !== JSON.stringify(this.props.dataSource)) {
       this.setState({dataSource: this.initHeadData(nextProps.dataSource)})
+    }
   }
   initHeadData(dataSource) {
     let header = this.props.header;
@@ -123,16 +117,10 @@ class Datasheet extends React.Component {
     this.setState({ dataSource });
   }
   handleScroll() {
-    const { count } = this.props;
     const { scrollTop, scrollHeight, clientHeight } = this.refs.datasheet;
       this.refs.thead.style.transform = `translateY(${scrollTop}px)`;
-      if (scrollTop + clientHeight >= ROW_HEIGHT * (count + 1)) {
-        this.page += 1;
-        this.props.onLoad(this.page, this.refs.datasheet)
-      }
-      if (scrollTop > 0 && scrollTop < ROW_HEIGHT && this.page > 1 ) {
-        this.page -= 1;
-        this.props.onLoad(this.page, this.refs.datasheet)
+      if (scrollTop + clientHeight > scrollHeight - ROW_HEIGHT) {
+        this.props.onLoad(this.props.dataSource.length)
       }
   }
   render() {
