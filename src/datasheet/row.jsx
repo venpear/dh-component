@@ -19,6 +19,7 @@ class DatasheetRow extends React.Component {
     const { index, data} = this.props;
     return (
       <tr>
+        <Cell  value={index+1} />
         {
           data.map((item, idx) => (
             <Cell
