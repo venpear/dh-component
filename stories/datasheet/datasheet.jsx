@@ -2,32 +2,25 @@ import React from 'react'
 import { Datasheet } from '../../src'
 
 let grid = function () {
-  let arry = [];
-  for (let i = 0; i < 50; i++) {
+  let option = [];
+  for (let idx = 0; idx < 50; idx++) {
     let row = [];
-    for(let i = 0; i < 15; i++) {
-      row.push({value: `${Math.floor(Math.random()*100)}`})
+    for(let jdx = 0; jdx < 6; jdx++) {
+      let t =  jdx === 0 ? { value: idx + 1} : { value: `${Math.floor(Math.random()*100)}` }
+      row.push(t)
     }
-    arry.push(row)
+    option.push(row)
   }
-  return arry
+  return option
 }
 let header = [
+    { title: '序号'},
     { title: '测试1'},
     { title: '测试2'},
     { title: '测试3'},
     { title: '测试4'},
     { title: '测试5'},
-    { title: '测试6'},
-    { title: '测试7'},
-    { title: '测试8'},
-    { title: '测试9'},
-    { title: '测试10'},
-    { title: '测试11'},
-    { title: '测试12'},
-    { title: '测试13'},
-    { title: '测试14'},
-    { title: '测试15'},
+    { title: '测试6'}
 ];
 class DataSheetDemo extends React.Component {
     constructor(props) {
@@ -36,23 +29,21 @@ class DataSheetDemo extends React.Component {
             grid: grid()
         }
     }
-    handleOnLoad = (num) => {
-        let load = [];
-        for (let i = 0; i < 10; i++) {
-            let row = [];
-            for(let i = 0; i < 12; i++) {
-                row.push({value: `滚动${Math.floor(Math.random()*100)}`})
-            }
-            load.push(row)
-        }
-        this.setState({grid: [...this.state.grid, ...load]})
+    handleScrollPage = (record) => {
+       console.log(record)
+      // let tmp = [].concat(this.state.grid, grid()).map((c, i) => {
+      //   return c.map((d, j) => ({ ...d, value: j === 0 ? i : d.value }))
+      // })
+      // this.setState({
+      //   grid: tmp
+      // })
     }
     render() {
         return (
             <Datasheet
-                dataSource={this.state.grid}
-                header={header}
-                onLoad={this.handleOnLoad}
+              dataSource={this.state.grid}
+              header={header}
+              onScrollPage={this.handleScrollPage}
             />
         )
     }

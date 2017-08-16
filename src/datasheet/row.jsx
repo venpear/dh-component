@@ -14,13 +14,16 @@ class DatasheetRow extends React.Component {
       this.state.data = this.props.data;
     }
   }
+  shouldComponentUpdate(nextProps) {
+     return nextProps.index === this.props.index
+  }
   render() {
     // const data = this.state.data;
     const { index, data} = this.props;
     return (
       <tr>
-        <Cell  value={index+1} />
         {
+
           data.map((item, idx) => (
             <Cell
               key={`datasheet-cell-${idx}`}

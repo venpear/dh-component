@@ -20,13 +20,7 @@ class DatasheetCell extends React.Component {
       let val = ref.value;
       ref.value = '';
       ref.value = val;
-      // ref.selectionStart = 0;
-      // ref.selectionEnd = val.length;
     }
-    // if (prevProps.selected && prevProps.editable && this.state.value !== this.props.value) {
-    //   let { rIndex, index } = this.props;
-    //   this.props.onChange(rIndex, index, this.state.value)
-    // }
   }
   handleDoubleClick() {
     let { rIndex, index } = this.props;

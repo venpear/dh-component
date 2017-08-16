@@ -14,6 +14,7 @@ function buildArray(number = 0) {
 }
 
 const ROW_HEIGHT = 33; //默认行高
+const PAGE_TOTAL = 50;
 class Datasheet extends React.Component {
   static propTypes = {
     header: PropTypes.array,
@@ -118,10 +119,14 @@ class Datasheet extends React.Component {
   }
   handleScroll() {
     const { scrollTop, scrollHeight, clientHeight } = this.refs.datasheet;
-    const { onLoad, dataSource } = this.props;
+    const { onScrollPage, dataSource } = this.props;
     this.refs.thead.style.transform = `translateY(${scrollTop}px)`;
-    if (scrollTop + clientHeight > scrollHeight - ROW_HEIGHT && typeof onLoad === 'function') {
-      this.props.onLoad(dataSource.length)
+    if (typeof onScrollPage === 'function') {
+      if (scrollTop + clientHeight > scrollHeight - ROW_HEIGHT) {
+        onScrollPage('down')
+      } else if (scrollTop === 0) {
+        onScrollPage('up')
+      }
     }
   }
   render() {
@@ -147,7 +152,6 @@ class Datasheet extends React.Component {
         >
           <thead ref="thead">
             <tr>
-              <th />
               {
                 header.map((item, idx) => (
                   <th key={`datasheet-th-${idx}`}>{item.title}</th>
