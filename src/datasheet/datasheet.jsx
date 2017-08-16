@@ -122,11 +122,12 @@ class Datasheet extends React.Component {
     const { onScrollPage, dataSource } = this.props;
     this.refs.thead.style.transform = `translateY(${scrollTop}px)`;
     if (typeof onScrollPage === 'function') {
-      if (scrollTop + clientHeight > scrollHeight - ROW_HEIGHT) {
-        onScrollPage('down')
-      } else if (scrollTop === 0) {
-        onScrollPage('up')
-      }
+      onScrollPage({ scrollTop, scrollHeight, clientHeight, height: 32})
+      // if (scrollTop + clientHeight > scrollHeight - ROW_HEIGHT) {
+      //
+      // } else if (scrollTop === 0) {
+      //   onScrollPage('up')
+      // }
     }
   }
   render() {
