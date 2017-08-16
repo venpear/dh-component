@@ -119,7 +119,7 @@ class Datasheet extends React.Component {
   handleScroll() {
     const { scrollTop, scrollHeight, clientHeight } = this.refs.datasheet;
       this.refs.thead.style.transform = `translateY(${scrollTop}px)`;
-      if (scrollTop + clientHeight > scrollHeight - ROW_HEIGHT) {
+      if (scrollTop + clientHeight > scrollHeight - ROW_HEIGHT && this.props.onLoad) {
         this.props.onLoad(this.props.dataSource.length)
       }
   }
