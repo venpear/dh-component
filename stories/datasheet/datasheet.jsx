@@ -50,7 +50,6 @@ class DataSheetDemo extends React.Component {
     render() {
         return (
             <Datasheet
-                count={100}
                 dataSource={this.state.grid}
                 header={header}
                 onLoad={this.handleOnLoad}
