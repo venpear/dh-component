@@ -98,12 +98,13 @@ class Datasheet extends React.Component {
       }
     })
   }
-  handleKeyDown() {
-    const dataSource = this.state.dataSource;
-    const _dataSource = dataSource.map((item, idx) =>
-      item.map(c => ({...c, editable: c.selected ? true : false }))
-    )
-    this.setState({ dataSource: _dataSource })
+  handleKeyDown(e) {
+    // console.log(e.keyCode)
+    // // const dataSource = this.state.dataSource;
+    // // const _dataSource = dataSource.map((item, idx) =>
+    // //   item.map(c => ({...c, editable: c.selected ? true : false }))
+    // // )
+    // // this.setState({ dataSource: _dataSource })
   }
   handleDoubleClick(rIndex, index) {
     const dataSource = this.state.dataSource.map((item, idx) => {

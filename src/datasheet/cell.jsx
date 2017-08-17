@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 class DatasheetCell extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      value: props.value
-    };
+    // this.state = {
+    //   value: props.value
+    // };
     this.handleClick = this.handleClick.bind(this);
     this.handleKeyDown = this.handleKeyDown.bind(this);
-    this.handleChange = this.handleChange.bind(this);
+    // this.handleChange = this.handleChange.bind(this);
     this.handleBlur = this.handleBlur.bind(this);
     this.handleDoubleClick = this.handleDoubleClick.bind(this);
   }
@@ -34,13 +34,14 @@ class DatasheetCell extends React.Component {
     const { rIndex , index} = this.props;
     this.props.onEditable(rIndex, index)
   }
-  handleChange(e) {
-    this.setState({ value: e.target.value });
-  }
-  handleBlur() {
+  // handleChange(e) {
+  //   this.setState({ value: e.target.value });
+  // }
+  handleBlur(e) {
+    let value = e.target.value
     let { rIndex, index } = this.props;
-    if (this.props.value + '' !== this.state.value) {
-      this.props.onChange(rIndex, index, this.state.value);
+    if (this.props.value + '' !== value) {
+      this.props.onChange(rIndex, index, value);
     }
   }
   render() {
@@ -58,7 +59,7 @@ class DatasheetCell extends React.Component {
               className="editable"
               ref={`input_${props.rIndex}_${props.index}`}
               defaultValue={value}
-              onChange={this.handleChange}
+              // onChange={this.handleChange}
               onBlur={this.handleBlur}
             />
           ) : null

@@ -1,6 +1,9 @@
 .dh-datasheet {
   overflow: scroll;
   height: 100%;
+  border-left: 1px solid #cecece;
+  border-top: 1px solid #cecece;
+  border-bottom: 1px solid #cecece;
   table {
     width: 100%;
     margin: auto;
@@ -8,20 +11,21 @@
     table-layout: fixed;
     outline: none;
     tr {
-      height: 32px;
-      line-height: 32px;
+      height: 28px;
+      line-height: 28px;
       &:nth-child(even) {
         >td {
           background-color: #f8f9fa;
         }
       }
       th {
-        height: 36px;
-        line-height: 36px;
+        height: 28px;
+        line-height: 28px;
+        font-size: 12px;
         border-right: 1px solid #cecece;
         border-bottom: 1px solid #cecece;
-        background: #f6f6f6;
-        color: #333333;
+        background: #ECEFF1;
+        color: #666666;
       }
       td {
         box-sizing: border-box;
@@ -49,7 +53,7 @@
         }
       }
       td.selected {
-        border: 2px solid #217345;
+        border: 2px solid #23C132;
       }
     }
   }
