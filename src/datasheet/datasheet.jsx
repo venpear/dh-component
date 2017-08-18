@@ -73,28 +73,34 @@ class Datasheet extends React.Component {
     this.setState({ dataSource: _dataSource })
   }
   handleChange(rIndex, index, value) {
-    let [rowData, cellData] = [null, null];
-    const dataSource = this.state.dataSource.map((item, idx) => {
+    let [preCell, nextCell] = [null, null];
+    const dataSource = this.state.dataSource.map((row, idx) => {
       if (idx === rIndex) {
-        rowData = item.map((c, jdx) => {
+        return row.map((cell, jdx) => {
           if (jdx === index) {
-            cellData = {...c, value}
-            return cellData;
+            preCell = { ...cell };
+            nextCell = {...cell, value}
+            return nextCell;
           }
-          return c;
+          return cell;
         });
-        return rowData;
       }
-      return item;
+      return row;
     });
     this.setState({ dataSource }, () => {
-      let row = rowData.map(item => {
-        let { value, editable, selected, ...others} = item;
-        return { value, ...others }
-      });
       if (this.props.onChange && typeof this.props.onChange === 'function') {
-        let { value, editable, selected, ...others} = cellData;
-        this.props.onChange({ index, rowIndex: rIndex }, { value, ...others }, row)
+        let {
+           editable: preEditable,
+           selected: preSelected,
+           ...preOther
+         } = preCell;
+        let {
+
+          editable: nextEditable,
+          selected: nextSelected,
+          ...nextOther
+        } = nextCell;
+        this.props.onChange({ ...preOther }, { ...nextOther }, [rIndex, index])
       }
     })
   }

@@ -43,6 +43,11 @@ class DataSheetDemo extends React.Component {
             <Datasheet
               dataSource={this.state.grid}
               header={header}
+              onChange={(pre, next, index) => {
+                console.log('pre', pre)
+                console.log('next', next)
+                console.log('index', index)
+              }}
               onScrollPage={this.handleScrollPage}
             />
         )
