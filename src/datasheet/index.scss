@@ -11,7 +11,7 @@
       line-height: 28px;
       &:nth-child(even) {
         >td {
-          background-color: #f8f9fa;
+          background-color: #f7f8f9;
         }
       }
       th {
@@ -47,6 +47,7 @@
           background: none;
         }
         span {
+          color: #333333;
           padding: 0 6px;
         }
       }
