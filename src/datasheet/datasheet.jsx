@@ -44,7 +44,7 @@ class Datasheet extends React.Component {
     // console.log('la', $parentNode.clientWidth)
   }
   componentWillReceiveProps(nextProps) {
-    if (JSON.stringify(nextProps.dataSource) !== JSON.stringify(this.props.dataSource)) {
+    if (nextProps.dataSource !== this.props.dataSource) {
       this.setState({dataSource: this.initHeadData(nextProps.dataSource)})
     }
   }
