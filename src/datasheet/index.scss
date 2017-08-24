@@ -1,14 +1,10 @@
 .dh-datasheet {
+  position: relative;
   overflow: auto;
   height: 100%;
-  border-left: 1px solid #cecece;
-  border-top: 1px solid #cecece;
-  border-bottom: 1px solid #cecece;
+  border: 1px solid #cecece;
   table {
-    width: auto;
-    margin: auto;
-    border-spacing: 0;
-    table-layout: fixed;
+    width: 100%;
     outline: none;
     tr {
       height: 28px;
