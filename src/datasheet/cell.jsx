@@ -15,11 +15,13 @@ class DatasheetCell extends React.Component {
   componentDidUpdate(prevProps) {
     const { rIndex, index } = this.props;
     if (this.props.editable && this.props.selected) {
+
       let ref = this.refs[`input_${rIndex}_${index}`];
-      ref.focus();
-      let val = ref.value;
-      ref.value = '';
-      ref.value = val;
+       //ref.focus();
+      // let val = ref.value;
+      // ref.value = '';
+      // ref.value = val;
+
     }
   }
   handleDoubleClick() {
@@ -50,8 +52,8 @@ class DatasheetCell extends React.Component {
     return (
       <td
         className={props.selected ? 'selected' : ''}
-        onDoubleClick={this.handleDoubleClick}
-        onClick={this.handleClick}
+        onClick={this.handleDoubleClick}
+        // onClick={this.handleClick}
       >
         {
           props.editable ? (

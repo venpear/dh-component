@@ -9,7 +9,7 @@
     tr {
       height: 28px;
       line-height: 28px;
-      &:nth-child(even) {
+      &:nth-child(2n) {
         >td {
           background-color: #f7f8f9;
         }

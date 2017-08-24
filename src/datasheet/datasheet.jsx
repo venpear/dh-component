@@ -117,6 +117,7 @@ class Datasheet extends React.Component {
       if (idx === rIndex) {
         return item.map((c, jdx) => ({
           ...c,
+          selected: jdx === index ? true : false,
           editable: jdx === index ? true : false
         }));
       }
