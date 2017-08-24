@@ -1,5 +1,5 @@
 .dh-datasheet {
-  overflow: scroll;
+  overflow: auto;
   height: 100%;
   border-left: 1px solid #cecece;
   border-top: 1px solid #cecece;
@@ -26,6 +26,8 @@
         border-bottom: 1px solid #cecece;
         background: #ECEFF1;
         color: #666666;
+        white-space: pre;
+        padding: 0 6px;
       }
       td {
         box-sizing: border-box;
@@ -41,7 +43,7 @@
         white-space: nowrap;
         outline: none;
         input.editable {
-          padding: 0 4px;
+          padding: 0 6px;
           width: 100%;
           height: 100%;
           border: none;
@@ -49,7 +51,7 @@
           background: none;
         }
         span {
-          padding: 0 4px;
+          padding: 0 6px;
         }
       }
       td.selected {

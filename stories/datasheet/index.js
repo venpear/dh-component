@@ -4,7 +4,9 @@ import withReadme from 'storybook-readme/with-readme';
 import datasheetReadme from './datasheet.md';
 import DataSheetDemo from './datasheet';
 const options = {
-  inline: true, propTables: false
+  inline: true,
+  propTables: false,
+  source: false
 }
 
 storiesOf('数据矩阵', module)

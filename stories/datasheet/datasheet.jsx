@@ -1,9 +1,9 @@
 import React from 'react'
-import { Datasheet } from '../../src'
+import { Datasheet,  Input, Form } from '../../src'
 
 let grid = function () {
   let option = [];
-  for (let idx = 0; idx < 50; idx++) {
+  for (let idx = 0; idx < 10; idx++) {
     let row = [];
     for(let jdx = 0; jdx < 6; jdx++) {
       let t =  jdx === 0 ? { value: idx + 1} : { value: `${Math.floor(Math.random()*100)}` }
@@ -39,18 +39,27 @@ class DataSheetDemo extends React.Component {
       // })
     }
     render() {
-        return (
-            <Datasheet
-              dataSource={this.state.grid}
-              header={header}
-              onChange={(pre, next, index) => {
-                console.log('pre', pre)
-                console.log('next', next)
-                console.log('index', index)
-              }}
-              onScrollPage={this.handleScrollPage}
-            />
+      const { getFieldDecorator} = this.props.form
+      return (
+        <div>
+          <div style={{ marginBottom: 60 }}>{
+            getFieldDecorator('field')(
+                <Input />
+            )
+          }
+          </div>
+          <Datasheet
+            dataSource={this.state.grid}
+            header={header}
+            onChange={(pre, next, index) => {
+              console.log('pre', pre)
+              console.log('next', next)
+              console.log('index', index)
+            }}
+            onScrollPage={this.handleScrollPage}
+          />
+        </div>
         )
     }
 }
-export default  DataSheetDemo
+export default  Form.create()(DataSheetDemo)
