@@ -9,9 +9,14 @@
     tr {
       height: 28px;
       line-height: 28px;
-      &:nth-child(2n) {
+      &:nth-child(even) {
         >td {
           background-color: #f7f8f9;
+        }
+      }
+        &:nth-child(odd) {
+        >td {
+          background-color: #fff;
         }
       }
       th {
@@ -20,7 +25,6 @@
         font-size: 12px;
         border-right: 1px solid #cecece;
         border-bottom: 1px solid #cecece;
-        background: #ECEFF1;
         color: #666666;
         white-space: pre;
         padding: 0 6px;
@@ -38,7 +42,7 @@
         text-overflow: ellipsis;
         white-space: nowrap;
         outline: none;
-        background: #fff;
+        background-color: #fff;
         input.editable {
           padding: 0 6px;
           width: 100%;
