@@ -1,3 +1,8 @@
+$inputLength: auto; // input 高度
+$inputFontSize: 12px; // input 内的字体大小
+$inputLineHeight: 15px;
+$inputBorderBg: #e6e6e6;
+$inputColor: #333333;
 .dh-calendar-picker {
   position: relative;
   display: inline-block;
