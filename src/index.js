@@ -21,6 +21,7 @@ export Slider from './slider';
 export Form from './form';
 export ColorPicker from './color_picker';
 export Datasheet from './datasheet';
+export DatePicker from './date_picker';
 /* begin --- import antd component **/
 export Row from 'antd/lib/row';
 export Col from 'antd/lib/col';
@@ -31,6 +32,6 @@ export Progress from 'antd/lib/progress';
 export Collapse from 'antd/lib/collapse';
 export Popover from 'antd/lib/popover';
 export Tree from 'antd/lib/tree';
-export DatePicker from 'antd/lib/date-picker';
+// export DatePicker from 'antd/lib/date-picker';
 export Spin from 'antd/lib/spin'
 /* endt --- import antd component **/
