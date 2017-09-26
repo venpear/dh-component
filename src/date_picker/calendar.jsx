@@ -11,7 +11,6 @@ import 'moment/locale/zh-cn';
 import 'moment/locale/en-gb';
 import 'rc-calendar/assets/index.css'
 
-// const format = 'YYYY-MM-DD HH:mm:ss';
 class Calendar extends Component {
   static defaultProps = {
     prefixCls: 'dh-calendar',
@@ -32,16 +31,13 @@ class Calendar extends Component {
       value: this.props.defaultValue
     }
   }
-  getFormat = () => {
-    if (this.props.showTime) {
-      return  'YYYY-MM-DD HH:mm:ss'
-    } else if (this.props.format) {
-      return 'YYYY-MM-DD'
-    }
-  }
   onChange = (value) => {
-    // console.log('DatePicker change: ', (value && value.format(this.getFormat(this.props.format))));
     this.setState({ value });
+  }
+  handleClear = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    this.setState({value: null})
   }
   renderCalendar() {
     const { prefixCls, locale, showTime, ...restProps } = this.props
@@ -58,29 +54,32 @@ class Calendar extends Component {
     )
   }
   render() {
-    const { disabled, value } = this.state
-    // const { format } = this.props
+    const { value } = this.state
+    const { format, disabled } = this.props
     return (
       <DatePicker
         animation="slide-up"
         disabled={disabled}
         calendar={this.renderCalendar()}
-        value={value}
         onChange={this.onChange}
+        value={value}
       >
         {
           ({value}) => {
             return (
-              <div className="dh-calendar-picker">
-              <input
-                placeholder={this.props.placeholder}
-                style={{...this.props.style}}
-                disabled={disabled}
-                readOnly
-                className="dh-calendar-picker-input"
-                value={value && value.format(this.getFormat()) || ''}
-              />
+            <span className="dh-calendar-picker"  style={{...this.props.style}}>
+              <div> 
+                <input
+                  placeholder={this.props.placeholder}
+                  disabled={disabled}
+                  readOnly
+                  className="dh-calendar-picker-input"
+                  value={value && value.format(format) || ''}
+                />
+                { value &&  <span onClick={this.handleClear} className="dh-calendar-picker-clear" />}
+                <span className="dh-calendar-picker-icon"></span>
               </div>
+              </span>
             )
           }
         }

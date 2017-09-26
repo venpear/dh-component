@@ -18,9 +18,6 @@ $prefixCls: 'dh-calendar';
   box-shadow: 0 1px 6px rgba(0,0,0,.2);
   background-clip: padding-box;
   line-height: 1.5;
-  a:hover {
-    color: #23c123;
-  }
   /*time panel*/
   /*input-wrap  start*/
   &-input {
@@ -53,6 +50,7 @@ $prefixCls: 'dh-calendar';
   /*input-wrap  end*/
   /*date-panel start*/
   &-date-panel {
+    overflow: hidden;
     position: relative;
   }
   &-next-month-btn-day,
@@ -174,6 +172,11 @@ $prefixCls: 'dh-calendar';
     }
    }
    &-today {
+     .dh-calendar-date {
+      border-color: #23c132;
+      font-weight: 700;
+      color: #23c132;
+     }
      &-btn {
        display: inline-block;
        text-align: center;
@@ -184,31 +187,44 @@ $prefixCls: 'dh-calendar';
      }
    }
    &-selected-day {
-    &-date {
+    .dh-calendar-date {
       background: #23c123;
       color: #fff;
       border: 1px solid transparent;
     }
    }
-   /*calendar body end*/
-   /*calendar footer start*/
    &-footer {
-    border-top: 1px solid #e9e9e9;
+     a {
+      color: #23c132;
+      background: transparent;
+      text-decoration: none;
+      outline: none;
+      cursor: pointer;
+     }
+    // border-top: 1px solid #e9e9e9;
     line-height: 38px;
     padding: 0 12px;
-    &-show-ok {
-
-    }
     &-btn {
       text-align: center;
       display: block;
     }
+    &-extra + &-btn {
+      border-top: 1px solid #e9e9e9;
+      margin: 0 -12px;
+      padding: 0 12px;
+     }
+     &-show-ok {
+      border-top: 1px solid #e9e9e9;
+     }
    }
    &-time {
     .dh-calendar-footer {
       .dh-calendar-time-picker-btn {
         display: inline-block;
         margin-right: 8px;
+        &-disabled {
+          color: rgba(0,0,0,.25);
+        }
       }
     }
      .dh-calendar-footer-btn {
@@ -243,16 +259,38 @@ $prefixCls: 'dh-calendar';
     border-radius: 4px;
     height: 22px;
     line-height: 20px;
+    &:hover {
+      color: #23c132;
+    }
+    &-disabled {
+      color: rgba(0,0,0,.25) !important;
+      background-color: #f7f7f7;
+      border-color: #d9d9d9;
+      cursor: not-allowed;
+    }
    }
+   
    &-range {
      width: 470px;
      overflow: hidden;
+     .dh-calendar-time {
+       &-picker-inner {
+        padding-top: 34px;
+        height: 100%;
+        background: none;
+       }
+     }
      &-part {
        width: 50%;
        position: relative;
      }
      &-left {
        float: left;
+       .dh-calendar-time {
+        &-picker-inner {
+         border-right: 2px solid #e9e9e9;
+        }
+      }
      }
      &-right {
        float: right;
@@ -267,14 +305,53 @@ $prefixCls: 'dh-calendar';
       line-height: 34px;
       color: rgba(0,0,0,.43);
      }
-     &-picker-input {
-      background-color: transparent;
-      border: 0;
-      height: 99%;
-      outline: 0;
-      width: 43%;
-      text-align: center;
-      vertical-align: top;
+     &-picker {
+      &-input {
+        background-color: transparent;
+        border: 0;
+        height: 99%;
+        outline: 0;
+        width: 43%;
+        text-align: center;
+        vertical-align: top;
+      }
+      &-separator {
+        color: rgba(0,0,0,.43);
+        width: 8px;
+        display: inline-block;
+        line-height: 18px;
+        vertical-align: top;
+      }
+     }
+     .dh-calendar-in-range-cell {
+       border-radius: 0;
+       position: relative;
+       >div {
+         position: relative;
+         z-index: 1;
+       }
+       &:before {
+        content: "";
+        display: block;
+        background: rgba(35, 193, 50, 0.1); //选中的背景颜色
+        border-radius: 0;
+        border: 0;
+        position: absolute;
+        top: 4px;
+        bottom: 4px;
+        left: 0;
+        right: 0;
+       } 
+     }
+     &-quick-selector {
+       text-align: left;
+       >a {
+         color: #23c123;
+         margin-right: 8px;
+         &:hover {
+          color: #19D319
+         }
+       }
      }
    }
 }

@@ -63,11 +63,18 @@
   &-selected-cell {
     .dh-calendar-month-panel-month {
       background: #23c132;
-      color: #ffffff;
+      color: #ffffff !important;
     }
   }
   &-cell {
     text-align: center;
+    &-disabled {
+      .dh-calendar-month-panel-month {
+        cursor: not-allowed;
+        color: #bcbcbc;
+        background: #f7f7f7;
+      }
+    }
   }
   &-month {
     display: inline-block;
@@ -80,5 +87,8 @@
     padding: 0 6px;
     border-radius: 4px;
     transition: background .3s ease;
+    &:hover {
+      color: #23c132;
+    }
   }
 }
