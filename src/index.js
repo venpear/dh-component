@@ -22,6 +22,7 @@ export Form from './form';
 export ColorPicker from './color_picker';
 export Datasheet from './datasheet';
 export DatePicker from './date_picker';
+export Checkbox2 from './checkbox2';
 /* begin --- import antd component **/
 export Row from 'antd/lib/row';
 export Col from 'antd/lib/col';
