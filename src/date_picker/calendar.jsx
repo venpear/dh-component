@@ -21,7 +21,9 @@ class Calendar extends Component {
   static propTypes = {
     defaultValue: PropTypes.object,
     style: PropTypes.object,
-    showTime: PropTypes.bool
+    showTime: PropTypes.bool,
+    onChange: PropTypes.func,
+    onClear: PropTypes.func
   }
   constructor(props) {
     super(props)
@@ -38,6 +40,9 @@ class Calendar extends Component {
     e.preventDefault();
     e.stopPropagation();
     this.setState({value: null})
+    if (this.props.onClear) {
+      this.props.onClear()
+    }
   }
   renderCalendar() {
     const { prefixCls, locale, showTime, ...restProps } = this.props
