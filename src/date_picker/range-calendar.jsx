@@ -26,7 +26,9 @@ class RangeDateCalendar extends Component {
     style: PropTypes.object,
     showTime: PropTypes.bool,
     showToday: PropTypes.bool,
-    disabled: PropTypes.bool
+    disabled: PropTypes.bool,
+    onChange: PropTypes.func,
+    onClear: PropTypes.func
   }
   constructor(props) {
     super(props)
@@ -78,6 +80,9 @@ class RangeDateCalendar extends Component {
     e.preventDefault();
     e.stopPropagation();
     this.setState({value: []})
+    if (this.props.onClear) {
+      this.props.onClear()
+    }
   }
   setValue = (value) => {
     this.handleChange(value);
