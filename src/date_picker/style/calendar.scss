@@ -18,6 +18,7 @@ $prefixCls: 'dh-calendar';
   box-shadow: 0 1px 6px rgba(0,0,0,.2);
   background-clip: padding-box;
   line-height: 1.5;
+  margin-top: 35px;
   /*time panel*/
   /*input-wrap  start*/
   &-input {
@@ -28,6 +29,11 @@ $prefixCls: 'dh-calendar';
     height: 22px;
     color: rgba(0,0,0,.65);
     background: #fff;
+  }
+  &-input-wrap-disabled {
+    .dh-calendar-input-wrap {
+      display: none;
+    }
   }
   &-input-wrap {
     height: 34px;
@@ -79,13 +85,13 @@ $prefixCls: 'dh-calendar';
     .#{$prefixCls}-prev-year-btn {
       left: 7px;
       &:after {
-        content: "\e640"
+        content: "\e60f"
       }
     }
     .#{$prefixCls}-next-year-btn {
       right: 7px;
       &:after {
-        content: "\e621"
+        content: "\e612"
       }
     }
     .#{$prefixCls}-prev-month-btn {

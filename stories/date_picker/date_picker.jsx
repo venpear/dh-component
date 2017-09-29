@@ -9,6 +9,9 @@ class DatePickerDemo extends Component {
   constructor(props) {
     super(props)
   }
+  handleClear = () => {
+    console.log('handleClear')
+  }
   render() {
     return (
       <div>
@@ -35,6 +38,9 @@ class DatePickerDemo extends Component {
            onChange={(value, str) => {
             console.log(value, '22222', str)
           }}
+          showClear
+          showDateInput
+          onClear={this.handleClear}
         />
       </div><br/>
       <div className="demo-date-picker">

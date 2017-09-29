@@ -16,19 +16,20 @@ class Calendar extends Component {
     prefixCls: 'dh-calendar',
     placeholder: '请选择日期',
     locale: zhCN,
-    format: 'YYYY-MM-DD'
+    format: 'YYYY-MM-DD',
+    showDateInput: false
   }
   static propTypes = {
     defaultValue: PropTypes.object,
     style: PropTypes.object,
     showTime: PropTypes.bool,
     onChange: PropTypes.func,
-    onClear: PropTypes.func
+    onClear: PropTypes.func,
+    showDateInput: PropTypes.bool
   }
   constructor(props) {
     super(props)
     this.state = {
-      showDateInput: true,
       disabled: false,
       value: this.props.defaultValue
     }
@@ -45,13 +46,14 @@ class Calendar extends Component {
     }
   }
   renderCalendar() {
-    const { prefixCls, locale, showTime, ...restProps } = this.props
+    const { prefixCls, locale, showTime, showDateInput,  ...restProps } = this.props
     const timePickerElement =  <TimePickerPanel prefixCls="dh-calendar-time-picker" defaultValue={moment('00:00:00', 'HH:mm:ss')} />;
     return (
       <RcCalendar
         prefixCls={prefixCls}
         className={classnames({'dh-calendar-time': showTime})}
         locale={locale}
+        showDateInput={showDateInput}
         style={{ zIndex: 1000 }}
         timePicker={showTime ? timePickerElement : null}
         {...restProps}
