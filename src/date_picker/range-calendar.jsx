@@ -22,7 +22,7 @@ class RangeDateCalendar extends Component {
     // format: 'YYYY-MM-DD HH:mm:ss'
   }
   static propTypes = {
-    defaultValue: PropTypes.object,
+    defaultValue: PropTypes.array,
     style: PropTypes.object,
     showTime: PropTypes.bool,
     showToday: PropTypes.bool,
@@ -159,7 +159,7 @@ class RangeDateCalendar extends Component {
                     className="dh-calendar-range-picker-input"
                     value={this.isValidRange(value) && `${this.format(value[0])}` || ''}                
                   />
-                  <span className="ant-calendar-range-picker-separator" >~</span>
+                  <span className="dh-calendar-range-picker-separator" >~</span>
                   <input
                     placeholder="结束日期"
                     style={{...this.props.style}}
