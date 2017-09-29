@@ -147,5 +147,8 @@
     padding: 0 6px;
     border-radius: 4px;
     transition: background .3s ease;
+    &:hover {
+      color: #23c132;
+    }
   }
 }
