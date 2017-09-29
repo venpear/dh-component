@@ -22,6 +22,7 @@ $placeholder-color: #999999;
     &--single {
       position: relative;
       cursor: pointer;
+      height: 24px;
     }
     &__placeholder {
       color: $placeholder-color;
