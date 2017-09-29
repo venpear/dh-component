@@ -42,13 +42,13 @@ $prefixCls: 'dh-calendar';
     .#{$prefixCls}-month-panel-prev-year-btn {
       left: 7px;
       &:after {
-        content: '\e640'
+        content: '\e60f'
       }
     }
     .#{$prefixCls}-month-panel-next-year-btn {
       right: 7px;
       &:after {
-        content: '\e621'
+        content: '\e612'
       }
     }
   }

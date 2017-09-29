@@ -12,29 +12,36 @@ import 'moment/locale/zh-cn';
 import 'moment/locale/en-gb';
 import 'rc-calendar/assets/index.css'
 
+// const selectValue = [moment('2015/10/1'), moment('2016/12/01') ]
 const prefixCls = 'dh-calendar'
 class RangeDateCalendar extends Component {
   static defaultProps = {
     prefixCls: 'dh-calendar',
     placeholder: '请选择日期',
     locale: zhCN,
-    showToday: false
-    // format: 'YYYY-MM-DD HH:mm:ss'
+    showToday: false,
+    dateInputPlaceholder: ['开始', '结束'],
+    rangePlaceholder: ['开始日期', '结束日期'],
+    showClear: false,
+    showDateInput: false
   }
   static propTypes = {
-    defaultValue: PropTypes.object,
+    defaultValue: PropTypes.array,
     style: PropTypes.object,
     showTime: PropTypes.bool,
     showToday: PropTypes.bool,
     disabled: PropTypes.bool,
     onChange: PropTypes.func,
-    onClear: PropTypes.func
+    onClear: PropTypes.func,
+    dateInputPlaceholder: PropTypes.array,
+    rangePlaceholder: PropTypes.array,
+    showDateInput: PropTypes.bool
   }
   constructor(props) {
     super(props)
     this.state = {
-      value: this.props.defaultValue 
-      // selectedValue: this.props.defaultValue || [ moment(), moment().add(1, 'month') ]
+      value: this.props.defaultValue,
+      rangeIdx: null 
     }
   }
   getShowDateFromValue = () => {
@@ -68,8 +75,9 @@ class RangeDateCalendar extends Component {
       this.props.onChange(value, datestring)
     }
   }
-  handleVaueChange = (value) => {
-    this.setState({selectedValue: value})
+  handleValueChange = (value) => {
+    console.log('value', value)
+    // this.setState({selectedValue: value})
   }
   handleOk = (value) => {
     if (this.props.onOk) {
@@ -84,9 +92,9 @@ class RangeDateCalendar extends Component {
       this.props.onClear()
     }
   }
-  setValue = (value) => {
+  setValue = (value, idx) => {
     this.handleChange(value);
-    this.setState({ value, selectedValue: value });
+    this.setState({ value, rangeIdx: idx });
   }
   clearHoverValue = () => this.setState({ hoverValue: [] });
   renderFooter = () => {
@@ -94,14 +102,15 @@ class RangeDateCalendar extends Component {
     if (!ranges) {
       return null
     }
-    const operations = Object.keys(ranges || {}).map(range => {
+    const operations = Object.keys(ranges || {}).map((range, idx) => {
       const value  = ranges[range]
       return (
         <a
+          className={classnames({[`${prefixCls}-range-quick-selector-actived`]: idx == this.state.rangeIdx})}
           key={range}
-          onClick={() => this.setValue(value)}
-          onMouseEnter={() => this.setState({ hoverValue: value })}
-          onMouseLeave={this.clearHoverValue}
+          onClick={() => this.setValue(value, idx)}
+          // onMouseEnter={() => this.setState({ hoverValue: value })}
+          // onMouseLeave={this.clearHoverValue}
         >
           {range}
         </a>
@@ -115,29 +124,34 @@ class RangeDateCalendar extends Component {
     return [ rangeNode ]
   }
   renderCalendar = () => {
-    const { prefixCls, locale, showTime, showToday, ranges, ...restProps } = this.props
+    const { prefixCls, locale, showTime, showToday, ranges, dateInputPlaceholder, showDateInput, ...restProps } = this.props
     // const { hoverValue, value, selectedValue } = this.state
     const timePickerElement =  <TimePickerPanel  prefixCls="dh-calendar-time-picker" defaultValue={moment('00:00:00', 'HH:mm:ss')} />;
     return (
       <RangeCalendar
         prefixCls={prefixCls}
-        className={classnames({'dh-calendar-time': showTime, [`${prefixCls}-range-with-ranges`]: ranges})}
+        className={classnames({
+         'dh-calendar-time': showTime,
+          [`${prefixCls}-range-with-ranges`]: ranges,
+          'dh-calendar-input-wrap-disabled': !showDateInput
+        })}
         showToday={showToday}
         locale={locale}
         style={{ zIndex: 1000 }}
-        dateInputPlaceholder={['start', 'end']}
+        dateInputPlaceholder={dateInputPlaceholder}
         timePicker={showTime ? timePickerElement : null}
         renderFooter={this.renderFooter}
         onValueChange={this.handleValueChange}
         onChange={this.handleChange}
+        // selectedValue={selectValue}
         onOk={this.handleOk}
       />
     )
   }
   render() {
     const { value } = this.state
-    const { disabled, locale } = this.props
-    return (
+    const { disabled, locale, rangePlaceholder, showClear } = this.props
+    return ( 
       <DatePicker
         animation="slide-up"
         locale={locale}
@@ -152,23 +166,23 @@ class RangeDateCalendar extends Component {
               <div className="dh-calendar-picker">
                 <span className="dh-calendar-picker-input">
                   <input
-                    placeholder="开始日期"
+                    placeholder={rangePlaceholder[0]}
                     style={{...this.props.style}}
                     disabled={disabled} 
                     readOnly
                     className="dh-calendar-range-picker-input"
                     value={this.isValidRange(value) && `${this.format(value[0])}` || ''}                
                   />
-                  <span className="ant-calendar-range-picker-separator" >~</span>
+                  <span className="dh-calendar-range-picker-separator" >~</span>
                   <input
-                    placeholder="结束日期"
+                    placeholder={rangePlaceholder[1]}
                     style={{...this.props.style}}
                     disabled={disabled} 
                     readOnly
                     className="dh-calendar-range-picker-input"
                     value={this.isValidRange(value) && `${this.format(value[1])}` || ''}                
                   />
-                  { this.isValidRange(value) &&<span onClick={this.handleClear} className="dh-calendar-picker-clear" /> } 
+                  { showClear && this.isValidRange(value) &&<span onClick={this.handleClear} className="dh-calendar-picker-clear" /> } 
                   <span className="dh-calendar-picker-icon"></span>
                 </span>
               </div>

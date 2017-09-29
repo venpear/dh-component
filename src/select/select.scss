@@ -35,6 +35,7 @@ $placeholder-color: #999999;
     font-size: $select-fontSize;
     line-height: $select-lineHeight;
     color: $select-color;
+    white-space: nowrap;
   }
 
   &-arrow {
