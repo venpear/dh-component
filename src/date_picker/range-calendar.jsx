@@ -40,7 +40,8 @@ class RangeDateCalendar extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      value: this.props.defaultValue 
+      value: this.props.defaultValue,
+      rangeIdx: null 
     }
   }
   getShowDateFromValue = () => {
@@ -91,9 +92,9 @@ class RangeDateCalendar extends Component {
       this.props.onClear()
     }
   }
-  setValue = (value) => {
+  setValue = (value, idx) => {
     this.handleChange(value);
-    this.setState({ value, selectedValue: value });
+    this.setState({ value, rangeIdx: idx });
   }
   clearHoverValue = () => this.setState({ hoverValue: [] });
   renderFooter = () => {
@@ -101,14 +102,15 @@ class RangeDateCalendar extends Component {
     if (!ranges) {
       return null
     }
-    const operations = Object.keys(ranges || {}).map(range => {
+    const operations = Object.keys(ranges || {}).map((range, idx) => {
       const value  = ranges[range]
       return (
         <a
+          className={classnames({[`${prefixCls}-range-quick-selector-actived`]: idx == this.state.rangeIdx})}
           key={range}
-          onClick={() => this.setValue(value)}
-          onMouseEnter={() => this.setState({ hoverValue: value })}
-          onMouseLeave={this.clearHoverValue}
+          onClick={() => this.setValue(value, idx)}
+          // onMouseEnter={() => this.setState({ hoverValue: value })}
+          // onMouseLeave={this.clearHoverValue}
         >
           {range}
         </a>
@@ -129,9 +131,9 @@ class RangeDateCalendar extends Component {
       <RangeCalendar
         prefixCls={prefixCls}
         className={classnames({
-          'dh-calendar-time': showTime,
-         [`${prefixCls}-range-with-ranges`]: ranges,
-         'dh-calendar-input-wrap-disabled': !showDateInput
+         'dh-calendar-time': showTime,
+          [`${prefixCls}-range-with-ranges`]: ranges,
+          'dh-calendar-input-wrap-disabled': !showDateInput
         })}
         showToday={showToday}
         locale={locale}

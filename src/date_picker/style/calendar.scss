@@ -200,7 +200,7 @@ $prefixCls: 'dh-calendar';
     }
    }
    &-footer {
-     a {
+    a {
       color: #23c132;
       background: transparent;
       text-decoration: none;
@@ -351,13 +351,16 @@ $prefixCls: 'dh-calendar';
      }
      &-quick-selector {
        text-align: left;
-       >a {
-         color: #23c123;
-         margin-right: 8px;
-         &:hover {
-          color: #19D319
-         }
-       }
+      >a {
+        color: #666666;
+        margin-right: 8px;
+        &:hover {
+        color: #19D319
+        }
+      }
+      &-actived {
+        color: #23c123 !important;
+      }
      }
    }
 }
