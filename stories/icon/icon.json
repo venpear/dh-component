@@ -78,5 +78,8 @@
 	"wenjianjia": "\\e649",
 	"genghuanshuju1": "\\e647",
 	"bianjishuju1": "\\e645",
-	"calculate1": "\\e61c"
+	"calculate1": "\\e61c",
+	"double-left": "\\e60f",
+	"double-right": "\\e612",
+	"close-chamfer": "\\e60e"
 }
