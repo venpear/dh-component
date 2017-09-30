@@ -85,13 +85,13 @@ $prefixCls: 'dh-calendar';
     .#{$prefixCls}-prev-year-btn {
       left: 7px;
       &:after {
-        content: "\e60f"
+        content: "\e613"
       }
     }
     .#{$prefixCls}-next-year-btn {
       right: 7px;
       &:after {
-        content: "\e612"
+        content: "\e614"
       }
     }
     .#{$prefixCls}-prev-month-btn {
