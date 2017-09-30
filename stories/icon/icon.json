@@ -79,7 +79,10 @@
 	"genghuanshuju1": "\\e647",
 	"bianjishuju1": "\\e645",
 	"calculate1": "\\e61c",
-	"double-left": "\\e60f",
-	"double-right": "\\e612",
-	"close-chamfer": "\\e60e"
+	"double-left": "\\e613",
+	"double-right": "\\e614",
+	"close-chamfer": "\\e60e",
+	"number": "\\e603",
+	"row": "\\e609",
+	"column": "\\e605"
 }
