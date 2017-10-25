@@ -56,7 +56,9 @@ export default class Tinymce extends React.Component {
     let b = draftToHtml(rawContentState, hashConfig, true, (rc) => {
       return `<p><img src=${rc.data.src}/></p>`
     })
-     console.log(b, 'wbb')
+    if (this.props.onSave) {
+      this.props.onSave(b)
+    }
   }
   render() {
     const { uploadConfig, footer, footerText } = this.props
