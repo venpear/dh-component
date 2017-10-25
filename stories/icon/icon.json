@@ -84,5 +84,6 @@
 	"close-chamfer": "\\e60e",
 	"number": "\\e603",
 	"row": "\\e609",
-	"column": "\\e605"
+	"column": "\\e605",
+	"comment": "\\e64a"
 }
