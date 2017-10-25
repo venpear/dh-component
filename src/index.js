@@ -23,6 +23,7 @@ export ColorPicker from './color_picker';
 export Datasheet from './datasheet';
 export DatePicker from './date_picker';
 export Checkbox2 from './checkbox2';
+export Tinymce from './tinymce';
 /* begin --- import antd component **/
 export Row from 'antd/lib/row';
 export Col from 'antd/lib/col';

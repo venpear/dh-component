@@ -18,6 +18,7 @@ import 'antd/dist/antd.css';
 import './test.scss';
 
 function loadStories() {
+  require('../stories/tinymce/index.js')
   require('../stories/form/index.js');
   require('../stories/button/index.js');
   require('../stories/list/index.js');
