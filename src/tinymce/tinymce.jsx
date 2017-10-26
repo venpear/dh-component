@@ -53,11 +53,13 @@ export default class Tinymce extends React.Component {
       trigger: '#',
       separator: ' ',
     }
-    let b = draftToHtml(rawContentState, hashConfig, true, (rc) => {
-      return `<p><img src=${rc.data.src}/></p>`
-    })
+    let _html = draftToHtml(
+      rawContentState,
+      hashConfig,
+      true,
+      rc => `<p><img src=${rc.data.src}/></p>`)
     if (this.props.onSave) {
-      this.props.onSave(b)
+      this.props.onSave(_html)
     }
   }
   render() {
