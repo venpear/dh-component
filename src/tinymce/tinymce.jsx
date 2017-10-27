@@ -57,7 +57,7 @@ export default class Tinymce extends React.Component {
       rawContentState,
       hashConfig,
       true,
-      rc => `<p><img src=${rc.data.src}/></p>`)
+      rc => `<p><img src="${rc.data.src}" /></p>`)
     if (this.props.onSave) {
       this.props.onSave(_html)
     }
