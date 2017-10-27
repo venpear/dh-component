@@ -31,7 +31,9 @@
   "dependencies": {
     "create-react-class": "^15.5.2",
     "draft-js": "^0.10.4",
-    "draftjs-to-html": "^0.7.6",
+    "draft-js-export-html": "^1.2.0",
+    "draft-js-import-html": "^1.2.1",
+    "draft-js-utils": "^1.2.0",
     "is_js": "^0.9.0",
     "prop-types": "^15.5.8",
     "rc-calendar": "^9.1.8",

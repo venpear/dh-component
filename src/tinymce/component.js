@@ -6,14 +6,16 @@ export const MediaBlock = class MediaBlock extends  Component {
     const entity = contentState.getEntity(block.getEntityAt(0));
     const type = entity.getType();
     const { src, description } = entity.getData();
-    if (type === 'image') {
+    if (type === 'IMAGE' || type === 'image') {
       return (
-        <div>
           <img src={src} alt={description} style={{maxWidth: '100%'}} />
-        </div>
         )
     } else if (type === 'video') {
       return (<div>This is a Video</div>)
+    } else {
+      return (<div></div>)
     }
   }
 }
+
+// export const 
