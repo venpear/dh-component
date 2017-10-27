@@ -67,7 +67,6 @@ export default class Tinymce extends React.Component {
   }
   _handleClickSave() {
     let _html = this.getHtmlContent()
-    console.log(b)
     if (this.props.onSave) {
       this.props.onSave(_html)
     }
