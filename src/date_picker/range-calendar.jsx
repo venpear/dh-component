@@ -23,7 +23,7 @@ class RangeDateCalendar extends Component {
     dateInputPlaceholder: ['开始', '结束'],
     rangePlaceholder: ['开始日期', '结束日期'],
     showClear: false,
-    showDateInput: false
+    showDateInput: true
   }
   static propTypes = {
     defaultValue: PropTypes.array,
@@ -41,7 +41,8 @@ class RangeDateCalendar extends Component {
     super(props)
     this.state = {
       value: this.props.defaultValue,
-      rangeIdx: null 
+      rangeIdx: null,
+      open: false
     }
   }
   getShowDateFromValue = () => {
@@ -58,7 +59,7 @@ class RangeDateCalendar extends Component {
   format = (v) => {
     return v ? v.format(this.props.format) : '';
   }
-  
+
   isValidRange = (v) => {
     return v && v[0] && v[1];
   }
@@ -92,9 +93,12 @@ class RangeDateCalendar extends Component {
       this.props.onClear()
     }
   }
+  handleOpenChange = (open) => {
+    this.setState({open})
+  }
   setValue = (value, idx) => {
     this.handleChange(value);
-    this.setState({ value, rangeIdx: idx });
+    this.setState({ value, rangeIdx: idx, open: !this.state.open });
   }
   clearHoverValue = () => this.setState({ hoverValue: [] });
   renderFooter = () => {
@@ -143,15 +147,14 @@ class RangeDateCalendar extends Component {
         renderFooter={this.renderFooter}
         onValueChange={this.handleValueChange}
         onChange={this.handleChange}
-        // selectedValue={selectValue}
         onOk={this.handleOk}
       />
     )
   }
   render() {
-    const { value } = this.state
+    const { value, open } = this.state
     const { disabled, locale, rangePlaceholder, showClear } = this.props
-    return ( 
+    return (
       <DatePicker
         animation="slide-up"
         locale={locale}
@@ -159,6 +162,8 @@ class RangeDateCalendar extends Component {
         onChange={this.onChange}
         calendar={this.renderCalendar()}
         value={value}
+        open={open}
+        onOpenChange={this.handleOpenChange}
       >
         {
           ({value}) => {
@@ -168,21 +173,21 @@ class RangeDateCalendar extends Component {
                   <input
                     placeholder={rangePlaceholder[0]}
                     style={{...this.props.style}}
-                    disabled={disabled} 
+                    disabled={disabled}
                     readOnly
                     className="dh-calendar-range-picker-input"
-                    value={this.isValidRange(value) && `${this.format(value[0])}` || ''}                
+                    value={this.isValidRange(value) && `${this.format(value[0])}` || ''}
                   />
                   <span className="dh-calendar-range-picker-separator" >~</span>
                   <input
                     placeholder={rangePlaceholder[1]}
                     style={{...this.props.style}}
-                    disabled={disabled} 
+                    disabled={disabled}
                     readOnly
                     className="dh-calendar-range-picker-input"
-                    value={this.isValidRange(value) && `${this.format(value[1])}` || ''}                
+                    value={this.isValidRange(value) && `${this.format(value[1])}` || ''}
                   />
-                  { showClear && this.isValidRange(value) &&<span onClick={this.handleClear} className="dh-calendar-picker-clear" /> } 
+                  { showClear && this.isValidRange(value) &&<span onClick={this.handleClear} className="dh-calendar-picker-clear" /> }
                   <span className="dh-calendar-picker-icon"></span>
                 </span>
               </div>
