@@ -18,7 +18,7 @@ $prefixCls: 'dh-calendar';
   box-shadow: 0 1px 6px rgba(0,0,0,.2);
   background-clip: padding-box;
   line-height: 1.5;
-  margin-top: 35px;
+  // margin-top: 35px;
   /*time panel*/
   /*input-wrap  start*/
   &-input {
@@ -125,7 +125,7 @@ $prefixCls: 'dh-calendar';
     //   line-height: 34px;
     // }
   }
- 
+
   /*calendar header end*/
    /*calendar body start*/
    table {
@@ -275,7 +275,7 @@ $prefixCls: 'dh-calendar';
       cursor: not-allowed;
     }
    }
-   
+
    &-range {
      width: 470px;
      overflow: hidden;
@@ -347,7 +347,7 @@ $prefixCls: 'dh-calendar';
         bottom: 4px;
         left: 0;
         right: 0;
-       } 
+       }
      }
      &-quick-selector {
        text-align: left;
