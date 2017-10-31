@@ -69,6 +69,7 @@ export default class Tinymce extends React.Component {
     let _html = this.getHtmlContent()
     if (this.props.onSave) {
       this.props.onSave(_html)
+      this.setState({ editorState: EditorState.createEmpty()})
     }
   }
   render() {

@@ -11,7 +11,7 @@ const rawContent = '<p className="123">bdbdbdbdbd</p><p>kdkdkd</p><figure><img s
 storiesOf('富文本', module)
   // .addDecorator(withReadme(listReadme))
   .addWithInfo('默认列表', () => (
-   <div style={{ width: 600, height: 600, background: '#3e3e3e', padding: 10}}>
+   <div style={{ width: 600, height: 300, background: '#3e3e3e', padding: 10}}>
      <Tinymce
        innerElement={(<p>123</p>)}
        uploadConfig={{
@@ -24,7 +24,7 @@ storiesOf('富文本', module)
        }
 
      }}
-     onChange={(r) => {console.log('test-export', r)}}
+     onSave={(r) => {console.log('test-export', r)}}
      footer
    />
    </div>
