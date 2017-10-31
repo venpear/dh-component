@@ -23,7 +23,8 @@ class RangeDateCalendar extends Component {
     dateInputPlaceholder: ['开始', '结束'],
     rangePlaceholder: ['开始日期', '结束日期'],
     showClear: false,
-    showDateInput: true
+    showDateInput: true,
+    ranges: []
   }
   static propTypes = {
     defaultValue: PropTypes.array,
@@ -35,13 +36,15 @@ class RangeDateCalendar extends Component {
     onClear: PropTypes.func,
     dateInputPlaceholder: PropTypes.array,
     rangePlaceholder: PropTypes.array,
-    showDateInput: PropTypes.bool
+    showDateInput: PropTypes.bool,
+    defaultRange: PropTypes.string
   }
   constructor(props) {
     super(props)
+    const rangeKeys = Object.keys(props.ranges)
     this.state = {
-      value: this.props.defaultValue,
-      rangeIdx: null,
+      value: props.defaultValue,
+      rangeIdx: Array.isArray(rangeKeys) ? rangeKeys.findIndex(d => d === props.defaultRange) : -1,
       open: false
     }
   }
