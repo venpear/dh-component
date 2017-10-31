@@ -38,6 +38,7 @@ class DatePickerDemo extends Component {
            onChange={(value, str) => {
             console.log(value, '22222', str)
           }}
+          defaultRange={'本月'}
           ranges={{ '今天': [moment(), moment()], '本月': [moment(), moment().endOf('month')] }}
           showClear
           showDateInput
@@ -49,6 +50,7 @@ class DatePickerDemo extends Component {
           showTime
           format= 'YYYY-MM-DD HH:mm:ss'
           ranges={{ '今天': [moment(), moment()], '本月': [moment(), moment().endOf('month')] }}
+          defaultRange={'今天'}
           onChange={(value, str) => {
             console.log(value, '8888888', str)
           }}
