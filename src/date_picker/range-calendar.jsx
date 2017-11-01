@@ -61,8 +61,7 @@ class RangeDateCalendar extends Component {
     }
   }
   setRangeIdx = (ranges, range) => {
-    const rangeKeys = Object.keys(this.props.ranges)
-    return Array.isArray(rangeKeys) ? rangeKeys.findIndex(d => d === range) : -1
+    return Object.keys(ranges).findIndex(d => d === range)
   }
   // getShowDateFromValue = () => {
   //   // const [start, end] = value;
