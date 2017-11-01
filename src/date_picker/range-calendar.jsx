@@ -12,7 +12,6 @@ import 'moment/locale/zh-cn';
 import 'moment/locale/en-gb';
 import 'rc-calendar/assets/index.css'
 
-// const selectValue = [moment('2015/10/1'), moment('2016/12/01') ]
 const prefixCls = 'dh-calendar'
 class RangeDateCalendar extends Component {
   static defaultProps = {
@@ -24,10 +23,12 @@ class RangeDateCalendar extends Component {
     rangePlaceholder: ['开始日期', '结束日期'],
     showClear: false,
     showDateInput: true,
-    ranges: []
+    ranges: {},
+    value: []
   }
   static propTypes = {
     defaultValue: PropTypes.array,
+    value: PropTypes.array,
     style: PropTypes.object,
     showTime: PropTypes.bool,
     showToday: PropTypes.bool,
@@ -37,28 +38,43 @@ class RangeDateCalendar extends Component {
     dateInputPlaceholder: PropTypes.array,
     rangePlaceholder: PropTypes.array,
     showDateInput: PropTypes.bool,
-    defaultRange: PropTypes.string
+    // defaultRange: PropTypes.string,
+    ranges: PropTypes.object,
+    range: PropTypes.string
   }
   constructor(props) {
     super(props)
-    const rangeKeys = Object.keys(props.ranges)
+    // const rangeKeys = Object.keys(props.ranges)
     this.state = {
-      value: props.defaultValue,
-      rangeIdx: Array.isArray(rangeKeys) ? rangeKeys.findIndex(d => d === props.defaultRange) : -1,
+      value: props.value || props.defaultValue,
+      rangeIdx: this.setRangeIdx(props.ranges, props.range),
       open: false
     }
   }
-  getShowDateFromValue = () => {
-    // const [start, end] = value;
-    const start = moment()
-
-    // value could be an empty array, then we should not reset showDate
-    if (!start && !end) {
-      return;
+  componentWillReceiveProps(nextProps) {
+     if (nextProps.value !== this.props.value ||
+        nextProps.range !== this.props.range) {
+          this.setState({
+            value: nextProps.value,
+            rangeIdx: this.setRangeIdx(nextProps.ranges, nextProps.range)
+          })
     }
-    const newEnd = end && end.isSame(start, 'month') ? end.clone().add(1, 'month') : end;
-    return [start, newEnd];
   }
+  setRangeIdx = (ranges, range) => {
+    const rangeKeys = Object.keys(this.props.ranges)
+    return Array.isArray(rangeKeys) ? rangeKeys.findIndex(d => d === range) : -1
+  }
+  // getShowDateFromValue = () => {
+  //   // const [start, end] = value;
+  //   const start = moment()
+
+  //   // value could be an empty array, then we should not reset showDate
+  //   if (!start && !end) {
+  //     return;
+  //   }
+  //   const newEnd = end && end.isSame(start, 'month') ? end.clone().add(1, 'month') : end;
+  //   return [start, newEnd];
+  // }
   format = (v) => {
     return v ? v.format(this.props.format) : '';
   }
@@ -79,10 +95,9 @@ class RangeDateCalendar extends Component {
       this.props.onChange(value, datestring)
     }
   }
-  handleValueChange = (value) => {
-    console.log('value', value)
-    // this.setState({selectedValue: value})
-  }
+  // handleValueChange = (value) => {
+  //   // this.setState({selectedValue: value})
+  // }
   handleOk = (value) => {
     if (this.props.onOk) {
       this.props.onOk(value)
@@ -132,7 +147,6 @@ class RangeDateCalendar extends Component {
   }
   renderCalendar = () => {
     const { prefixCls, locale, showTime, showToday, ranges, dateInputPlaceholder, showDateInput, ...restProps } = this.props
-    // const { hoverValue, value, selectedValue } = this.state
     const timePickerElement =  <TimePickerPanel  prefixCls="dh-calendar-time-picker" defaultValue={moment('00:00:00', 'HH:mm:ss')} />;
     return (
       <RangeCalendar
@@ -148,7 +162,7 @@ class RangeDateCalendar extends Component {
         dateInputPlaceholder={dateInputPlaceholder}
         timePicker={showTime ? timePickerElement : null}
         renderFooter={this.renderFooter}
-        onValueChange={this.handleValueChange}
+        // onValueChange={this.handleValueChange}
         onChange={this.handleChange}
         onOk={this.handleOk}
       />

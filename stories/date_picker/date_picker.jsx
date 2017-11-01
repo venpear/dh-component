@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { DatePicker } from '../../src'
+import { DatePicker, Button } from '../../src'
 import './style.scss'
 import moment from 'moment'
 
@@ -8,9 +8,17 @@ const RangeCalendar = DatePicker.RangeCalendar
 class DatePickerDemo extends Component {
   constructor(props) {
     super(props)
+    this.state = {
+      range: '今天'
+    }
   }
   handleClear = () => {
     console.log('handleClear')
+  }
+  handleClick = () => {
+    let random = Math.round(Math.random())
+    console.log(random,'random')
+    this.setState({range: random === 0 ? '今天' :'本月'})
   }
   render() {
     return (
@@ -38,7 +46,7 @@ class DatePickerDemo extends Component {
            onChange={(value, str) => {
             console.log(value, '22222', str)
           }}
-          defaultRange={'本月'}
+          range={'本月'}
           ranges={{ '今天': [moment(), moment()], '本月': [moment(), moment().endOf('month')] }}
           showClear
           showDateInput
@@ -50,7 +58,7 @@ class DatePickerDemo extends Component {
           showTime
           format= 'YYYY-MM-DD HH:mm:ss'
           ranges={{ '今天': [moment(), moment()], '本月': [moment(), moment().endOf('month')] }}
-          defaultRange={'今天'}
+          range={this.state.range}
           onChange={(value, str) => {
             console.log(value, '8888888', str)
           }}
@@ -59,6 +67,7 @@ class DatePickerDemo extends Component {
           }}
         />
       </div><br/>
+      <Button onClick={this.handleClick}>改变range</Button>
       </div>
     )
   }
