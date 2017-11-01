@@ -23,8 +23,7 @@ class RangeDateCalendar extends Component {
     rangePlaceholder: ['开始日期', '结束日期'],
     showClear: false,
     showDateInput: true,
-    ranges: {},
-    value: []
+    ranges: {}
   }
   static propTypes = {
     defaultValue: PropTypes.array,
@@ -38,16 +37,15 @@ class RangeDateCalendar extends Component {
     dateInputPlaceholder: PropTypes.array,
     rangePlaceholder: PropTypes.array,
     showDateInput: PropTypes.bool,
-    // defaultRange: PropTypes.string,
     ranges: PropTypes.object,
-    range: PropTypes.string
+    range: PropTypes.string,
+    defaultRange: PropTypes.string
   }
   constructor(props) {
     super(props)
-    // const rangeKeys = Object.keys(props.ranges)
     this.state = {
       value: props.value || props.defaultValue,
-      rangeIdx: this.setRangeIdx(props.ranges, props.range),
+      rangeIdx: this.setRangeIdx(props.ranges, props.range || props.defaultRange),
       open: false
     }
   }
@@ -88,10 +86,12 @@ class RangeDateCalendar extends Component {
   onChange = (value) => {
     this.setState({ value });
   }
-  handleChange = (value) => {
+  handleChange = (value, rangeIdx) => {
     if (this.props.onChange && Array.isArray(value) && value.length > 1) {
+      const rangeStr = Object.keys(this.props.ranges).find((d, i) => i === rangeIdx) || null
       const datestring = this.getDatestring(value)
-      this.props.onChange(value, datestring)
+      this.props.onChange(value, datestring, rangeStr)
+      this.setState({rangeIdx: -1})
     }
   }
   // handleValueChange = (value) => {
@@ -114,7 +114,7 @@ class RangeDateCalendar extends Component {
     this.setState({open})
   }
   setValue = (value, idx) => {
-    this.handleChange(value);
+    this.handleChange(value, idx);
     this.setState({ value, rangeIdx: idx, open: !this.state.open });
   }
   clearHoverValue = () => this.setState({ hoverValue: [] });
