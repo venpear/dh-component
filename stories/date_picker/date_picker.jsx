@@ -17,7 +17,8 @@ class DatePickerDemo extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      range: '今天'
+      value: [moment(), moment()],
+      rangeStr: '今日'
     }
   }
   handleClear = () => {
@@ -29,9 +30,10 @@ class DatePickerDemo extends Component {
     this.setState({range: random === 0 ? '今天' :'本月'})
   }
   handleRangeChange = (data, datatring, rangeIdx) => {
-    console.log(data, 'data')
-    console.log(datatring, 'datatring')
-    console.log(rangeIdx, 'rangeIdx')
+    this.setState({
+      value: data,
+      rangeStr: rangeIdx
+    })
   }
   render() {
     return (
@@ -57,8 +59,8 @@ class DatePickerDemo extends Component {
           onChange={this.handleRangeChange}
           // defaultRange={'今日'}
           // defaultValue={[moment(), moment()]}
-          range={'本月'}
-          value={[moment(), moment()]}
+          range={this.state.rangeStr}
+          value={this.state.value}
           ranges={ranges}
           showClear
           showDateInput
