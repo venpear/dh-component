@@ -23,7 +23,7 @@ storiesOf('富文本', module)
        }
 
      }}
-     onSave={(r) => {console.log('test-export', r)}}
+    //  onSave={(r) => {console.log('test-export', r)}}
      footer
    />
    </div>

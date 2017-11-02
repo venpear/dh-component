@@ -12,6 +12,11 @@ import {
 } from 'draft-js';
 
 import { insertImages, MediaBlockRenderer } from './utils'
+function Filtrate(str){
+	return str.replace(/(\s*<p>\s*<br>\s*<\/p>\s*)(<figure>)|(<\/figure>)(\s*<p>\s*<br>\s*<\/p>\s*)/ig,
+	 (_, $1, $2, $3 ) => $2 =='<figure>' ? $2 :'</figure>' )
+}
+
 export default class Tinymce extends React.Component {
   static defaultProps = {
     placeholder: '请输入文字.......'
@@ -66,12 +71,28 @@ export default class Tinymce extends React.Component {
   }
   getHtmlContent() {
     let _editorState = this.state.editorState.getCurrentContent()
-    return stateToHTML(_editorState)
+    let _entityStyleFn = (entity) => {
+      const entityType = entity.get('type').toLowerCase();
+      if (entityType === 'image') {
+        const data = entity.getData();
+        return {
+          element: 'img',
+          attributes: {
+            src: data.src,
+            name: 'dhc-img'
+          },
+          style: {
+            width: '100%'
+          }
+        }
+      }
+    }
+    return stateToHTML(_editorState, { entityStyleFn: _entityStyleFn })
   }
   _handleClickSave() {
     let _html = this.getHtmlContent()
     if (this.props.onSave) {
-      this.props.onSave(_html)
+      this.props.onSave(Filtrate(_html))
       this.setState({ editorState: EditorState.createEmpty()})
     }
   }
