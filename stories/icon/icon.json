@@ -85,5 +85,10 @@
 	"number": "\\e603",
 	"row": "\\e609",
 	"column": "\\e605",
-	"comment": "\\e64a"
+	"comment": "\\e64a",
+	"shanchu": "\\e60f",
+	"pinglun": "\\e612",
+	"kuaizhao": "\\e64e",
+	"zhuanfa": "\\e64f",
+	"tupian": "\\e651"
 }

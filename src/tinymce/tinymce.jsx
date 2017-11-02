@@ -13,6 +13,9 @@ import {
 
 import { insertImages, MediaBlockRenderer } from './utils'
 export default class Tinymce extends React.Component {
+  static defaultProps = {
+    placeholder: '请输入文字.......'
+  }
   constructor(props) {
     super(props)
     this.state = {
@@ -73,7 +76,7 @@ export default class Tinymce extends React.Component {
     }
   }
   render() {
-    const { uploadConfig, footer, footerText, innerElement } = this.props
+    const { uploadConfig, footer, footerText, innerElement, placeholder} = this.props
     const uploadProps = {
       prefixCls: "dh-upload",
       className: 'dh-tinymce-ctr',
@@ -84,12 +87,13 @@ export default class Tinymce extends React.Component {
     }
     return (
       <div className="dh-tinymce">
-        <div className="dh-tinymce-btns dh-tinymce-btns-barLine">
-          <Upload {...uploadProps}><Icon type="picture"/> </Upload>
+        <div className="dh-tinymce-btns">
+          <Upload {...uploadProps}><Icon type="tupian"/> </Upload>
         </div>
         { innerElement }
         <div className="dh-tinymce-edit">
           <Editor
+            placeholder={placeholder}
             blockRendererFn={MediaBlockRenderer}
             editorState={this.state.editorState}
             onChange={this.handleChange}
@@ -99,7 +103,7 @@ export default class Tinymce extends React.Component {
         {
           footer === true ? (
             <div className="dh-tinymce-footer">
-              <span onClick={this.handleClickSave}>{ footerText || '保存' }</span>
+              <span onClick={this.handleClickSave}>{ footerText || '发送' }</span>
           </div>) : null
         }
         </div>

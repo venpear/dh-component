@@ -3,12 +3,14 @@
   height: 100%;
   background-color: #fff;
   min-height: 160px;
-  padding: 0px 8px;
+  padding: 8px;
   display: flex;
   flex-direction: column;
   &-btns {
-    height: 26px;
-    font-size: 18px;
+    height: 38px;
+    font-size: 20px;
+    line-height: 38px;
+    color: #999999;
   }
   &-ctr {
     cursor: pointer;
@@ -18,16 +20,22 @@
   }
   &-edit {
     flex: 1;
-    padding: 4px 8px;
     overflow: auto;
   }
   &-footer {
-    height: 32px;
+    height: 36px;
     text-align: right;
-    line-height: 32px;
+    line-height: 36px;
     span {
-      color: #23c132;
-      cursor: pointer;
+      display: inline-block;
+      width: 64px;
+      text-align: center;
+      color: #999999;
+      &:hover {
+        color: #23c132;
+        background: rgba(35,193,50,0.10);;
+        cursor: pointer;
+      }
     }
   }
   .dh-upload {

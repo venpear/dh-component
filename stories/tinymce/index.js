@@ -13,7 +13,6 @@ storiesOf('富文本', module)
   .addWithInfo('默认列表', () => (
    <div style={{ width: 600, height: 300, background: '#3e3e3e', padding: 10}}>
      <Tinymce
-       innerElement={(<p>123</p>)}
        uploadConfig={{
        name: 'bin',
        action: "https://dev.datahunter.cn/api/upload",
