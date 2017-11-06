@@ -80,9 +80,6 @@ export default class Tinymce extends React.Component {
           attributes: {
             src: data.src,
             name: 'dhc-img'
-          },
-          style: {
-            width: '100%'
           }
         }
       }
