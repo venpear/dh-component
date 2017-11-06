@@ -47,3 +47,25 @@
     }
   }
 }
+
+.DraftEditor-root {
+  position: relative;
+  .public-DraftEditorPlaceholder-root, .public-DraftEditor-content {
+    margin: 0 -15px -15px;
+    padding: 0 15px;
+  }
+} 
+.public-DraftEditorPlaceholder-root {
+  color: #9197a3;
+  position: absolute;
+  z-index: 0;
+}
+.public-DraftEditorPlaceholder-hasFocus {
+  color: #bdcec9;
+}
+.DraftEditor-editorContainer {
+  background-color: rgba(255,255,255,0);
+  border-left: .1px solid transparent;
+  position: relative;
+  z-index: 1;
+}
