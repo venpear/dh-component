@@ -177,7 +177,7 @@ $placeholder-color: #999999;
     &-item {
       position: relative;
       display: block;
-      padding: 7px 16px;
+      padding: 7px 10px 7px 16px;
       font-weight: 400;
       color: #666666;
       white-space: nowrap;
@@ -185,6 +185,8 @@ $placeholder-color: #999999;
       overflow: hidden;
       -webkit-transition: background .3s ease;
       transition: background .3s ease;
+      overflow: hidden;
+      text-overflow: ellipsis;
       &-disabled {
         color: rgba(0,0,0,.25);
         cursor: no-drop;
