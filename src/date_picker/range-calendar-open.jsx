@@ -20,12 +20,13 @@ class RangeCalenderOpen extends Component {
   static defaultProps = {
     format: 'YYYY-MM-DD',
     dateInputPlaceholder: ['开始日期', '结束日期'],
-    cn: true
+    cn: true,
+    ranges: {}
   }
   constructor(props) {
     super(props)
     this.state = {
-      rangeIdx:  Object.keys(props.ranges || {}).findIndex(d => d === props.defaultRange),
+      rangeIdx:  Object.keys(props.ranges).findIndex(d => d === props.defaultRange),
       selectedValue: props.selectedValue || props.defaultSelectedValue
     }
   }
@@ -63,7 +64,7 @@ class RangeCalenderOpen extends Component {
     if (!ranges) {
       return null
     }
-    const operations = Object.keys(ranges || {}).map((range, idx) => {
+    const operations = Object.keys(ranges).map((range, idx) => {
       const value  = ranges[range]
       return (
         <a
