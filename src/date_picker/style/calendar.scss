@@ -116,6 +116,7 @@ $prefixCls: 'dh-calendar';
       font-size: 16px;
       display: inline-block;
       line-height: 34px;
+      font-size: 12px;
     }
     // .#{$prefixCls}-month-select, .#{$prefixCls}-year-select {
     //   padding: 0 2px;
@@ -362,5 +363,8 @@ $prefixCls: 'dh-calendar';
         color: #23c123 !important;
       }
      }
+   }
+   &-range-open {
+     width: 100% !important;
    }
 }

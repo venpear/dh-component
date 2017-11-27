@@ -4,7 +4,7 @@ import './style.scss'
 import moment from 'moment'
 
 const RangeCalendar = DatePicker.RangeCalendar
-
+const RangeCalendarOpen = DatePicker.RangeCalendarOpen
 const ranges = {
   '今日': [moment().local().startOf('day'), moment().local()],
   '昨日': [moment().local().subtract(1, 'days'), moment().local()],
@@ -32,6 +32,13 @@ class DatePickerDemo extends Component {
     console.log(data, 'data')
     console.log(datatring, 'datatring')
     console.log(rangeIdx, 'rangeIdx')
+  }
+  handleOpenChange = (value) => {
+    console.log(value, 'open-change')
+  }
+  handleOpenSelect = (date, datetring) => {
+    console.log(date, 'open-select-date')
+    console.log(datetring, 'open-select-datetring')
   }
   render() {
     return (
@@ -80,6 +87,16 @@ class DatePickerDemo extends Component {
         />
       </div><br/>
       <Button onClick={this.handleClick}>改变range</Button>
+      <br/>
+       <div style={{width: '100%',padding: '8px'}}>
+         <RangeCalendarOpen 
+          ranges={ranges}
+          defaultRange='本月'
+          defaultSelectedValue={[moment(), moment().endOf('month')]}
+          onChange={this.handleOpenChange}
+          onSelect={this.handleOpenSelect}
+          />
+       </div>      
       </div>
     )
   }
