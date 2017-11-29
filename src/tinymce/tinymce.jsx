@@ -2,20 +2,23 @@ import React from 'react';
 import PropTypes from 'prop-types'
 import Upload from 'rc-upload'
 import Icon from '../icon'
-import { stateFromHTML } from 'draft-js-import-html';
-import { stateToHTML } from 'draft-js-export-html'
 import {
   Editor,
   EditorState,
   convertToRaw,
   convertFromRaw
 } from 'draft-js';
-
-import { insertImages, MediaBlockRenderer } from './utils'
-function Filtrate(str){
-	return str.replace(/(\s*<p>\s*<br>\s*<\/p>\s*)(<figure>)|(<\/figure>)(\s*<p>\s*<br>\s*<\/p>\s*)/ig,
-	 (_, $1, $2, $3 ) => $2 =='<figure>' ? $2 :'</figure>' )
-}
+import { convertToHTML, convertFromHTML } from 'draft-convert'
+import { 
+   insertImages,
+   MediaBlockRenderer,
+   getToHTMLConfig, 
+   getFromHTMLConfig
+} from './utils'
+// function Filtrate(str){
+// 	return str.replace(/(\s*<p>\s*<br>\s*<\/p>\s*)(<figure>)|(<\/figure>)(\s*<p>\s*<br>\s*<\/p>\s*)/ig,
+// 	 (_, $1, $2, $3 ) => $2 =='<figure>' ? $2 :'</figure>' )
+// }
 
 export default class Tinymce extends React.Component {
   static defaultProps = {
@@ -35,7 +38,7 @@ export default class Tinymce extends React.Component {
   componentWillMount() {
     if (this.props.rawContent) {
       let _editorState = this.state.editorState
-      let contentState = stateFromHTML(this.props.rawContent)  
+      let contentState = convertFromHTML(getFromHTMLConfig())(this.props.rawContent)  
       let editorState = EditorState.push(_editorState, contentState, 'change-block-data')
       this.setState({ editorState })
     }
@@ -43,7 +46,7 @@ export default class Tinymce extends React.Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.rawContent && nextProps.rawContent !== this.props.rawContent) {
       let _editorState = this.state.editorState
-      let contentState = stateFromHTML(nextProps.rawContent)  
+      let contentState = convertFromHTML(getFromHTMLConfig())(nextProps.rawContent)  
       let editorState = EditorState.push(_editorState, contentState, 'change-block-data')
       this.setState({ editorState })
     }
@@ -70,29 +73,36 @@ export default class Tinymce extends React.Component {
       throw("必须配置formatResult， 便于Tinymce接受上传后的图片")
     }
   }
-  getHtmlContent() {
-    let _editorState = this.state.editorState.getCurrentContent()
-    let _entityStyleFn = (entity) => {
-      const entityType = entity.get('type').toLowerCase();
-      if (entityType === 'image') {
-        const data = entity.getData();
-        return {
-          element: 'img',
-          attributes: {
-            src: data.src,
-            name: 'dhc-img'
-          }
-        }
-      }
-    }
-    return stateToHTML(_editorState, { entityStyleFn: _entityStyleFn })
+  // getHtmlContent() {
+  //   let _editorState = this.state.editorState.getCurrentContent()
+  //   let _entityStyleFn = (entity) => {
+  //     const entityType = entity.get('type').toLowerCase();
+  //     if (entityType === 'image') {
+  //       const data = entity.getData();
+  //       return {
+  //         element: 'img',
+  //         attributes: {
+  //           src: data.src,
+  //           name: 'dhc-img'
+  //         }
+  //       }
+  //     }
+  //   }
+  //   return stateToHTML(_editorState, { entityStyleFn: _entityStyleFn })
+  // }
+  _convertToHTML(contentState) {
+    let config = getToHTMLConfig({ contentState})
+    let html = convertToHTML(config)(contentState)
+    console.log('****', html)
   }
   _handleClickSave() {
-    let _html = this.getHtmlContent()
-    if (this.props.onSave) {
-      this.props.onSave(Filtrate(_html))
-      this.setState({ editorState: EditorState.createEmpty()})
-    }
+    this._convertToHTML(this.state.editorState.getCurrentContent())
+    
+    // let _html = this.getHtmlContent()
+    // if (this.props.onSave) {
+    //   this.props.onSave(Filtrate(_html))
+    //   this.setState({ editorState: EditorState.createEmpty()})
+    // }
   }
   render() {
     const { uploadConfig, footer, footerText, innerElement, placeholder, onSnap } = this.props

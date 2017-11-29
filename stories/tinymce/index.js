@@ -7,7 +7,7 @@ import withReadme from 'storybook-readme/with-readme';
 const options = {
   inline: false
 }
-const rawContent = '<p className="123">bdbdbdbdbd</p><p>kdkdkd</p><figure><img src="https://dev.datahunter.cn/upload/a6573863e125c03907e898d2e63a9a30.png"/></figure><p><br></p>'
+const rawContent = '<p data-me="123">bdbdbdbdbd</p>'
 storiesOf('富文本', module)
   // .addDecorator(withReadme(listReadme))
   .addWithInfo('默认列表', () => (
@@ -23,7 +23,8 @@ storiesOf('富文本', module)
        }
 
      }}
-    //  onSave={(r) => {console.log('test-export', r)}}
+      rawContent={rawContent}
+      onSave={(r) => {console.log('test-export', r)}}
      footer
    />
    </div>
