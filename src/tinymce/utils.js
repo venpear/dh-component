@@ -119,7 +119,6 @@ const blockToHTML = (contentState) => (block) => {
     }
   
     if (blockType === 'unstyled') {
-      console.log('***blockType')
       return (<p {...attributes}>{block.text}</p>)
     } else if (blockType === 'atomic') {
       return convertAtomicBlock(block, contentState)
@@ -137,7 +136,6 @@ const blockToHTML = (contentState) => (block) => {
 
   }
 export const getToHTMLConfig = (props) => {
-  console.log(props)
   return {
     blockToHTML: blockToHTML(props.contentState)
   }

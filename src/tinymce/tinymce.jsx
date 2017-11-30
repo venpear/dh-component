@@ -92,17 +92,14 @@ export default class Tinymce extends React.Component {
   // }
   _convertToHTML(contentState) {
     let config = getToHTMLConfig({ contentState})
-    let html = convertToHTML(config)(contentState)
-    console.log('****', html)
+    return convertToHTML(config)(contentState)
   }
   _handleClickSave() {
-    this._convertToHTML(this.state.editorState.getCurrentContent())
-    
-    // let _html = this.getHtmlContent()
-    // if (this.props.onSave) {
-    //   this.props.onSave(Filtrate(_html))
-    //   this.setState({ editorState: EditorState.createEmpty()})
-    // }
+    let html = this._convertToHTML(this.state.editorState.getCurrentContent())
+    if (this.props.onSave) {
+      this.props.onSave(html)
+      this.setState({ editorState: EditorState.createEmpty()})
+    }
   }
   render() {
     const { uploadConfig, footer, footerText, innerElement, placeholder, onSnap } = this.props
