@@ -102,7 +102,7 @@ export default class Tinymce extends React.Component {
     }
   }
   render() {
-    const { uploadConfig, footer, footerText, innerElement, placeholder, onSnap } = this.props
+    const { uploadConfig, footer, footerText, innerElement, placeholder, onSnap, snap } = this.props
     const uploadProps = {
       prefixCls: "dh-upload",
       className: 'dh-tinymce-ctr',
@@ -115,9 +115,13 @@ export default class Tinymce extends React.Component {
       <div className="dh-tinymce">
         <div className="dh-tinymce-btns">
           <Upload {...uploadProps}><Icon type="tupian"/> </Upload>
-          <span className="dh-tinymce-ctr" onClick={onSnap}>
-            <Icon type="kuaizhao" />
-          </span>
+          {
+            snap && (
+              <span className="dh-tinymce-ctr" onClick={onSnap}>
+                <Icon type="kuaizhao" />
+              </span>
+            )
+          }
         </div>
         { innerElement }
         <div className="dh-tinymce-edit">
