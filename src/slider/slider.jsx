@@ -66,6 +66,7 @@ class Slider extends React.Component {
     } else {
       return (
         <Tooltip
+          overlayClassName={classnames({[`${overlayClassName}`]: overlayClassName})}
           prefixCls={tooltipPrefixCls}
           overlay={this.renderHandle(value,index)}
           placement={this.renderPlacement(index)}
