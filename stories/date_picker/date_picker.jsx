@@ -78,6 +78,8 @@ class DatePickerDemo extends Component {
           format= 'YYYY-MM-DD HH:mm:ss'
           ranges={{ '今天': [moment(), moment()], '本月': [moment(), moment().endOf('month')] }}
           range={this.state.range}
+          className="nnnnn"
+          wrapperClassName="uuuuuuuuu"
           onChange={(value, str) => {
             console.log(value, '8888888', str)
           }}
