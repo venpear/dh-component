@@ -39,7 +39,9 @@ class RangeDateCalendar extends Component {
     showDateInput: PropTypes.bool,
     ranges: PropTypes.object,
     range: PropTypes.string,
-    defaultRange: PropTypes.string
+    defaultRange: PropTypes.string,
+    wrapperClassName: PropTypes.string,
+    className: PropTypes.string
   }
   constructor(props) {
     super(props)
