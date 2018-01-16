@@ -137,7 +137,7 @@ class Table extends Component {
     const { dataSource, columns, size, bordered, striped, rowSelection, fixed, upIcon, downIcon, ...props } = this.props;
     const { selectedIdx, sorter } = this.state;
     const thead = (
-      <thead ref="thead" >
+      <thead ref={()=> this.refs.thead} >
       <tr>
         {rowSelection && (
           <th>
@@ -204,7 +204,7 @@ class Table extends Component {
           [`dh-table-striped`]: striped,
           [`dh-table-fixed`]: fixed
         })}
-        ref="table"
+        ref={()=>this.refs.table}
         onWheel={this.handleScroll}
         onScroll={this.handleScroll}
       >
